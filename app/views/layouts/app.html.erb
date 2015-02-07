@@ -21,31 +21,34 @@
          <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
         <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
       </ul>
+      <% if teacher_signed_in? %>
+          <section class="top-bar-section">
+            <!-- Right Nav Section -->
+            <ul class="right">
 
-      <section class="top-bar-section">
-        <!-- Right Nav Section -->
-        <ul class="right">
-        
-          <li class="has-dropdown">
-            <a href="#">
-                <%= image_tag current_teacher.avatar_url(:thumb).to_s, :class => "round" %>  
-                <%= current_teacher.email %></a>
-            <ul class="dropdown">
-                <li><%=link_to 'Edit Profile', edit_teacher_registration_path %> </li>
-                <% if teacher_signed_in? %>
-                  <li><%= link_to 'Logout', destroy_teacher_session_path, :method => :delete %></li>
-                <% else %>
-                  <li><%= link_to 'Login', new_teacher_session_path %></li>
-                <% end %>
+              <li class="has-dropdown">
+                <a href="#">
+                    <% if current_teacher.avatar? %>
+                    <%= image_tag current_teacher.avatar_url(:thumb).to_s, :class => "round" %>  
+                    <% end %>
+                    <%= current_teacher.email %></a>
+                <ul class="dropdown">
+                    <li><%=link_to 'Edit Profile', edit_teacher_registration_path %> </li>
+                    <% if teacher_signed_in? %>
+                      <li><%= link_to 'Logout', destroy_teacher_session_path, :method => :delete %></li>
+                    <% else %>
+                      <li><%= link_to 'Login', new_teacher_session_path %></li>
+                    <% end %>
+                </ul>
+              </li>
             </ul>
-          </li>
-        </ul>
 
-        <!-- Left Nav Section -->
-        <ul class="left">
-          <li><%= link_to 'Periods <span class="label round secondary">2</span>'.html_safe, periods_path %></li>
-        </ul>
-      </section>
+            <!-- Left Nav Section -->
+            <ul class="left">
+              <li><%= link_to 'Periods <span class="label round secondary">2</span>'.html_safe, periods_path %></li>
+            </ul>
+          </section>
+      <% end %>
     </nav>
     <%= yield %>
 
