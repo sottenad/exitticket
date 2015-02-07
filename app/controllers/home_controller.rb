@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-    layout :marketing
+    layout "marketing"
     
   def index
   end

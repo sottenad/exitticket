@@ -25,8 +25,11 @@
       <section class="top-bar-section">
         <!-- Right Nav Section -->
         <ul class="right">
+        
           <li class="has-dropdown">
-            <a href="#"><%= current_teacher.email %></a>
+            <a href="#">
+                <%= image_tag current_teacher.avatar_url(:thumb).to_s, :class => "round" %>  
+                <%= current_teacher.email %></a>
             <ul class="dropdown">
                 <li><%=link_to 'Edit Profile', edit_teacher_registration_path %> </li>
                 <% if teacher_signed_in? %>

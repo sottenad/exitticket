@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
     before_action :authenticate_teacher!
-    layout :app_layout
+    layout "app"
     
     def index
         @teacher = current_teacher        

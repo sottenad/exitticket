@@ -36,6 +36,10 @@ gem 'raygun4ruby'
 gem 'simple_form'
 gem 'foundation-rails'
 gem 'carrierwave'
+gem 'fog'
+gem 'rmagick', :require => 'RMagick'
+
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

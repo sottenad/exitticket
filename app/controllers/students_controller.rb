@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
     before_action :authenticate_teacher!
-    layout :app_layout
+    layout "app"
     
   def new
       @period = Period.find_by(shortcode: params[:id])

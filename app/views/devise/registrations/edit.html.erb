@@ -9,6 +9,11 @@
             <%= f.input :email, required: true, autofocus: true %>
             <%= f.input :first_name %>
             <%= f.input :last_name %>
+            <div class="input">
+                <label>Photo:</label>
+                <%= image_tag resource.avatar_url(:mid).to_s %>
+            </div>
+            <%= f.file_field :avatar %>
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
               <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
             <% end %>
