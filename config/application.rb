@@ -22,6 +22,9 @@ module Exitticket
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-
+      
+      
+      #View Config Vars
+      config.site_title = "Exit Ticket"
   end
 end
