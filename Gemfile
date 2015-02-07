@@ -33,6 +33,9 @@ gem 'rails_12factor', group: :production
 #raygun - error logging
 gem 'raygun4ruby'
 
+gem 'simple_form'
+gem 'foundation-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

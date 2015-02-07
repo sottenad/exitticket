@@ -1,8 +1,20 @@
 Rails.application.routes.draw do
-  root 'home#index'
+  
+  
+  get 'student/new'
+
+  devise_for :teachers
   get 'dashboard' => 'dashboard#index'
+  
     
-  devise_for :users
+    resources :periods  
+    
+  authenticated :teacher do
+      root :to => 'dashboard#index', as: :authenticated_root
+  end
+  
+  root :to => 'home#index'
+    
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

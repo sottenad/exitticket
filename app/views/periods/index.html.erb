@@ -1,0 +1,6 @@
+Hello <%= @teacher.email %>
+<p><%= link_to "New Period", new_period_path %></p>
+
+<% @periods.each_with_index do |p,i| %>
+<p><%= p.shortcode %> - <%= p.title %></p>
+<% end %>
