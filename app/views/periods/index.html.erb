@@ -7,5 +7,10 @@ Hello <%= @teacher.email %>
 <p><%= link_to "New Period", new_period_path %></p>
 
 <% @periods.each_with_index do |p,i| %>
-<p><%= p.shortcode %> - <%= p.title %></p>
+<p>
+    <%= p.shortcode %> - <%= p.title %><br />
+    <%= link_to "View Join Page", join_path(p.shortcode) %>
+    
+</p>
+
 <% end %>
