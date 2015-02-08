@@ -8,11 +8,14 @@ nav.top-bar{
 }
 
 /*Lock styling*/
-.studentLock i{
+.studentLock,.studentDelete{
+    text-align: center;
+}
+.adminStudents i{
     font-size:1.5rem; 
     transition: color 0.5s ease;
     cursor:pointer;
 }
-.studentLock i.fa-lock{
+.adminStudents i.fa-lock{
     color:#900;   
 }

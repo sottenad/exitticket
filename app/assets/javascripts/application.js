@@ -15,5 +15,6 @@
 //= require foundation
 //= require turbolinks
 //= require_tree .
+//= require jquery.maskedinput.min
 
 $(function(){ $(document).foundation(); });

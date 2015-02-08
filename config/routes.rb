@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   
   resources :questions
   resources :periods, :path => 'classes'
-  resources :students, only: [:new, :create]  
+  resources :students 
   put 'students/:id/lock' => 'students#toggle_lock'
     
   authenticated :teacher do

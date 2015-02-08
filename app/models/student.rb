@@ -2,6 +2,11 @@ class Student < ActiveRecord::Base
     belongs_to :period
     has_one :teacher
     
+    phony_normalize :phone_number, :default_country_code => 'US'
+    
+    validates :name, :phone_number, presence: true
+    validates :phone_number, :phony_plausible => true
+    
     def display_name
         names = []
         if !self.first_name.nil? && !self.first_name.empty?

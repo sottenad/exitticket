@@ -41,6 +41,9 @@ gem 'carrierwave'
 gem 'fog'
 gem 'rmagick', :require => 'RMagick'
 
+#phone number validation
+gem 'phony_rails'
+
 
 
 # Use ActiveModel has_secure_password

@@ -1,15 +1,17 @@
 <div class="row">
     <div class="columns small-6 small-centered">
         <h1>Join Period <%= @period.number %></h1>
+        <h3><%= @period.title %></h3>
         <%= simple_form_for @student do |f| %>
             <div class="form-inputs">
-                <%= f.input :first_name %>
-                <%= f.input :phone_number %>
+                <%= f.input :name, label: 'Your Name', placeholder: 'John Dough', :required => true %>
+                <%= f.input :phone_number, :as => :string, :required => true, label: 'Your Cell Phone Number', :input_html => { class: 'phonemask'}  %>
+                <em>We will confirm your phone number in the next step.</em>
                 <%= f.hidden_field :period_id, value: @period.id %>
                 <%= f.hidden_field :teacher_id, value: @period.teacher.id %>
             </div>    
             <div class="form-inputs">
-                <%= f.button :submit, "Join" %>
+                <%= f.button :submit, "Join Class" %>
             </div>
         <% end %>
     </div>

@@ -15,6 +15,12 @@ class StudentsController < ApplicationController
       redirect_to joined_path
   end
     
+    def destroy
+        @student = Student.find(params[:id])
+        @student.delete
+        redirect_to :back
+    end
+    
     def toggle_lock
         student = Student.find(params[:id])
         if student.toggle_lock

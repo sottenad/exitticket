@@ -1,0 +1,13 @@
+defaults: &defaults
+  site_name: 'MyExitSlip'
+  site_url: 'http://myexitslip.com'
+
+development:
+  <<: *defaults
+  site_url: 'http://localhost:3000'
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

@@ -8,12 +8,14 @@
 </div>
 <div class="row">
     <div class="small-12 columns">
-        <table>
+        <% if @period.students.count > 0 %>
+        <table class="adminStudents">
             <thead>
                 <tr>
                     <th>Student</th>
                     <th>Email</th>
                     <th>Lock Out </th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,10 +23,21 @@
                 <tr data-student-id="<%= student.id %>">
                     <td><%= student.display_name %></td>    
                     <td><%= student.email %></td>
-                    <td class="studentLock"><i class="fa lock <%= student.locked ? 'fa-lock' : 'fa-unlock' %>"></i></td>
+                    <td class="studentLock">
+                        <i class="fa lock <%= student.locked ? 'fa-lock' : 'fa-unlock' %>"></i>
+                    </td>
+                    <td class="studentDelete">
+                        <i class="fa fa-user-times"></i>
+                        <%= link_to 'Destroy', student_path(student.id), :method =>:delete, data: { confirm: 'Are you sure?' }, "data-type" => "json" %>
+                    </td>
                 </tr>
                 <% end %>
             </tbody>
         </table>
+        <% else %>
+            <h5>No Students</h5>
+            <p>No students have joined this class yet. You can invite them to join by going to <kbd><%= link_to sprintf("%s/join/%s", APP_CONFIG['site_url'], @period.shortcode).html_safe, join_path(@period.shortcode) %></kbd> </p>
+        
+        <% end %>
     </div>
 </div>
