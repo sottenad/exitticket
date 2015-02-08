@@ -35,6 +35,8 @@ gem 'raygun4ruby'
 
 gem 'simple_form'
 gem 'foundation-rails'
+gem 'font-awesome-rails'
+
 gem 'carrierwave'
 gem 'fog'
 gem 'rmagick', :require => 'RMagick'

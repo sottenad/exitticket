@@ -1,15 +1,8 @@
 
 
 <div class="row">
+    <h2>New Class Period</h2>
     <div class="columns small-6 small-centered">
-    <%= simple_form_for @period do |f| %>
-        <div class="form-inputs">
-            <%= f.input :title %>
-            <%= f.input :number, collection: 1..8 %>
-        </div>
-        <div class="form-inputs">
-            <%= f.button :submit, "Create" %>
-        </div>
-    <% end %>
+        <%= render 'form' %>
     </div>
 </div>

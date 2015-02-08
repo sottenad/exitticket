@@ -1,16 +1,29 @@
 <% content_for :title do %>
-    Periods
+    Classes
 <% end %>
 
+<div class="row">
+    <div class="columns small-12">
+        Hello <%= @teacher.display_name %>
+            
+        <p><%= link_to "New Class Period", new_period_path %></p>
+    </div>
+</div>
+<div class="row" data-equalizer>
+    <% @periods.each_with_index do |p,i| %>
+    <div class="small-12 medium-6 large-4 columns <%if i==@periods.count-1 %>end<% end %> " data-equalizer-watch>
+        <div class="panel">
+            <h5><%= p.title %></h5>
+            <p><small>Period <%= p.number.to_s %></small></p>
+            <p><%= pluralize(p.students.count, 'Student') %></p>
+            <ul class="button-group small even-3">
+                <li><%= link_to "View Class", period_path(p.id), :class => 'button small' %></li>
+                <li><%= link_to "Join Class", join_path(p.shortcode), :class => 'button small' %></li>
+                <li><%= link_to "Edit Class", edit_period_path(p.id), :class => 'button small' %></li>
+            </ul>
+        </div>
+    </div>
 
-Hello <%= @teacher.email %>
-<p><%= link_to "New Period", new_period_path %></p>
-
-<% @periods.each_with_index do |p,i| %>
-<p>
-    <%= p.shortcode %> - <%= p.title %><br />
-    <%= link_to "View Join Page", join_path(p.shortcode) %>
+    <% end %>
+</div>
     
-</p>
-
-<% end %>

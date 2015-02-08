@@ -1,6 +1,7 @@
 class StudentsController < ApplicationController
-    before_action :authenticate_teacher!
-    layout "app"
+    
+    layout "marketing"
+    
     
   def new
       @period = Period.find_by(shortcode: params[:id])
@@ -9,9 +10,19 @@ class StudentsController < ApplicationController
     
   def create
       @student = Student.new(student_params) 
+      @student.locked = true
       @student.save
       redirect_to joined_path
   end
+    
+    def toggle_lock
+        student = Student.find(params[:id])
+        if student.toggle_lock
+            render :json => student.to_json
+        else
+            render :json => student.to_json
+        end
+    end
     
     private 
     def student_params

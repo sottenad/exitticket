@@ -32,6 +32,7 @@ module Exitticket
       end if File.exists?(env_file)
     end      
       
+      
       #View Config Vars
       config.site_title = "Exit Ticket"
       

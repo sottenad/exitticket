@@ -2,3 +2,17 @@ nav img.round{
  border-radius:7px;
     margin-right:5px;
 }
+
+nav.top-bar{
+ margin-bottom:20px;   
+}
+
+/*Lock styling*/
+.studentLock i{
+    font-size:1.5rem; 
+    transition: color 0.5s ease;
+    cursor:pointer;
+}
+.studentLock i.fa-lock{
+    color:#900;   
+}

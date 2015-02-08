@@ -8,4 +8,15 @@ class Teacher < ActiveRecord::Base
     
     has_many :periods
     has_many :students
+    
+    
+    #returns a suitable display name (first_name or email)
+    def display_name
+        if self.first_name.nil? || self.first_name.empty?
+            return self.email
+        else
+            return self.first_name
+        end
+    end
+    
 end

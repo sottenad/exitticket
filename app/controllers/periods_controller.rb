@@ -4,11 +4,28 @@ class PeriodsController < ApplicationController
     
     def index
        @teacher = current_teacher
-       @periods =  @teacher.periods
+       @periods =  @teacher.periods.order('periods.number ASC')
     end
     
     def new
        @period = Period.new 
+    end
+    
+    def show
+        @period = Period.find(params[:id])
+    end
+    
+    def edit 
+        @period = Period.find(params[:id])    
+    end
+    
+    def update
+        @period = Period.find(params[:id])
+        if @period.update_attributes(period_params)
+            redirect_to periods_path    
+        else
+            render 'edit'    
+        end
     end
     
     def create
@@ -18,6 +35,8 @@ class PeriodsController < ApplicationController
         period.save
         redirect_to periods_path
     end
+    
+
     
     private
     def period_params

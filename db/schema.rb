@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150207104202) do
+ActiveRecord::Schema.define(version: 20150208012215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,14 +25,38 @@ ActiveRecord::Schema.define(version: 20150207104202) do
     t.integer  "number"
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.text     "prompt"
+    t.integer  "rating_total"
+    t.integer  "rating_count"
+    t.integer  "teacher_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "response_sets", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "responses", force: :cascade do |t|
+    t.text     "response_text"
+    t.integer  "rating"
+    t.integer  "student_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "students", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.text     "phone_number"
+    t.integer  "phone_number", limit: 8
     t.integer  "period_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.integer  "teacher_id"
+    t.string   "email"
+    t.boolean  "locked"
   end
 
   create_table "teachers", force: :cascade do |t|

@@ -8,7 +8,9 @@
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "//code.jquery.com/jquery-1.11.2.min.js" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+      
     <%= csrf_meta_tags %>
   </head>
 
@@ -45,7 +47,8 @@
 
             <!-- Left Nav Section -->
             <ul class="left">
-              <li><%= link_to 'Periods <span class="label round secondary">2</span>'.html_safe, periods_path %></li>
+              <li><%= link_to 'Classes', periods_path %></li>
+              <li><%= link_to 'Questions', questions_path %></li>
             </ul>
           </section>
       <% end %>

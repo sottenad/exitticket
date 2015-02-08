@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
-  
+
   get 'join/:id' => 'students#new', as: :join
   get 'joined' => 'students#joined', as: :joined
 
   devise_for :teachers
   get 'dashboard' => 'dashboard#index'
   
-    
-  resources :periods  
+  resources :questions
+  resources :periods, :path => 'classes'
   resources :students, only: [:new, :create]  
+  put 'students/:id/lock' => 'students#toggle_lock'
     
   authenticated :teacher do
       root :to => 'dashboard#index', as: :authenticated_root

@@ -1,11 +1,16 @@
 <p>I am the homepage</p>
 
+<h2>Are you a teacher?</h2>
 <% if teacher_signed_in? %>
-  <li>
+  <p>
   <%= link_to('Logout', destroy_teacher_session_path, :method => :delete) %>        
-  </li>
+  </p>
 <% else %>
-  <li>
-  <%= link_to('Login', new_teacher_session_path)  %>  
-  </li>
+  <p>
+  <%= link_to('Login as teacher', new_teacher_session_path)  %>  
+  </p>
 <% end %>
+
+<h2>Are you a student</h2>
+<p>This is the teacher portal, please have your teacher share your classes sign-up link?</p>
+<small>Coming soon: find my teacher</small>
