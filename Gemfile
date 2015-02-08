@@ -42,7 +42,7 @@ gem 'fog'
 gem 'rmagick', :require => 'RMagick'
 
 #phone number validation
-gem 'phony_rails'
+gem 'validates_formatting_of'
 
 
 

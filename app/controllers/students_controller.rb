@@ -11,7 +11,7 @@ class StudentsController < ApplicationController
   def create
       @student = Student.new(student_params) 
       @student.locked = true
-      @student.save
+      @student.save!
       redirect_to joined_path
   end
     
@@ -32,7 +32,7 @@ class StudentsController < ApplicationController
     
     private 
     def student_params
-        params.require(:student).permit(:phone_number, :email, :period_id)
+        params.require(:student).permit(:phone_number, :email, :period_id, :teacher_id, :name)
     end
     
 end

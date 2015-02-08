@@ -9,6 +9,7 @@
                 <em>We will confirm your phone number in the next step.</em>
                 <%= f.hidden_field :period_id, value: @period.id %>
                 <%= f.hidden_field :teacher_id, value: @period.teacher.id %>
+                <%= @period.id %> <%= @period.teacher.id %>
             </div>    
             <div class="form-inputs">
                 <%= f.button :submit, "Join Class" %>
