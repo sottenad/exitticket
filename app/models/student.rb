@@ -1,4 +1,7 @@
 class Student < ActiveRecord::Base
+    
+    include TwilioUtils
+    
     belongs_to :period
     has_one :teacher
     
@@ -11,5 +14,10 @@ class Student < ActiveRecord::Base
         return self.locked
     end
     
-
+    def send_student_message(message)
+        num = self.phone_number
+        if Student.send_sms(num, message)
+            return true
+        end
+    end
 end

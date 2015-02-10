@@ -17,6 +17,7 @@
                     <th>Phone</th>
                     <th>Lock Out </th>
                     <th>Delete</th>
+                    <th>Send Messgage</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,13 +33,18 @@
                         <i class="fa fa-user-times"></i>
                         <%= link_to 'Destroy', student_path(student.id), :method =>:delete, data: { confirm: 'Are you sure?' }, "data-type" => "json" %>
                     </td>
+                    <td>
+                        <%= link_to send_student_sms_path(student.id) do %>
+                            <i class="fa fa-phone"></i>
+                        <% end %>
+                    </td>
                 </tr>
                 <% end %>
             </tbody>
         </table>
         <% else %>
             <h5>No Students</h5>
-            <p>No students have joined this class yet. You can invite them to join by going to <kbd><%= link_to sprintf("%s/join/%s", APP_CONFIG['site_url'], @period.shortcode).html_safe, join_path(@period.shortcode) %></kbd> </p>
+            <p>No students have joined this class yet. You can invite them to join by going to <kbd><%= link_to sprintf("%s/join/%s", ENV['SITE_NAME'], @period.shortcode).html_safe, join_path(@period.shortcode) %></kbd> </p>
         
         <% end %>
     </div>

@@ -31,6 +31,9 @@ module Exitticket
         ENV[key.to_s] = value
       end if File.exists?(env_file)
     end      
-    
+      
+    #load modules from the lib
+    config.autoload_paths += Dir["#{config.root}/lib/modules"]
+      
   end
 end

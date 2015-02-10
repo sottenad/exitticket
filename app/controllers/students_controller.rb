@@ -10,7 +10,7 @@ class StudentsController < ApplicationController
     
   def create
       @student = Student.new(student_params) 
-      @student.locked = true
+      @student.locked = false
       @student.save!
       redirect_to joined_path
   end
@@ -20,7 +20,15 @@ class StudentsController < ApplicationController
         @student.delete
         redirect_to :back
     end
-    
+
+    def sendMessage
+        @student = Student.find(params[:id])
+        message = 'I am coming from the controller'
+        if @student.send_student_message(message)
+            render plain: 'hello'
+        end
+    end
+
     def toggle_lock
         student = Student.find(params[:id])
         if student.toggle_lock

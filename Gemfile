@@ -37,14 +37,20 @@ gem 'simple_form'
 gem 'foundation-rails'
 gem 'font-awesome-rails'
 
+#manage keys and env values
+gem 'figaro'
+
+#image upload
 gem 'carrierwave'
 gem 'fog'
+#image resizing
 gem 'rmagick', :require => 'RMagick'
 
 #phone number validation
 gem 'validates_formatting_of'
 
-
+#Phone/sms support
+gem 'twilio-ruby'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

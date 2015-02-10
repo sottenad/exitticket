@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  
+  get 'students/:id/send' => 'students#sendMessage', as: :send_student_sms
+    
   get 'join/:id' => 'students#new', as: :join
   get 'joined' => 'students#joined', as: :joined
 
