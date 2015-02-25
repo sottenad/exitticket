@@ -1,7 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-    config.action_mailer.default_url_options = { :host => 'exitticket.herokuapp.com' }
+    config.action_mailer.default_url_options = { :host => 'myexitslip.com' }
     config.action_mailer.delivery_method = :smtp
     ActionMailer::Base.smtp_settings = {
         :address        => "smtp.sendgrid.net",
@@ -9,7 +9,7 @@ Rails.application.configure do
         :authentication => :plain,
         :user_name      => ENV['SENDGRID_USERNAME'],
         :password       => ENV['SENDGRID_PASSWORD'],
-        :domain         => 'exitticket.herokuapp.com'
+        :domain         => 'myexitslip.com'
     }
     
   #config.middleware.use Rack::TwilioWebhookAuthentication, Rails.application.secrets.twilio_auth_token, '/voice'
