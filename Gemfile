@@ -50,7 +50,7 @@ gem 'rmagick', :require => 'RMagick'
 gem 'validates_formatting_of'
 
 #Phone/sms support
-gem 'twilio-ruby'
+gem 'sms_fu'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
