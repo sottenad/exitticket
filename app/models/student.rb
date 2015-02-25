@@ -1,6 +1,6 @@
 class Student < ActiveRecord::Base
     
-    include TwilioUtils
+    include SmsEasyUtils
     
     belongs_to :period
     has_one :teacher

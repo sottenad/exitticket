@@ -9,9 +9,19 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
-config.middleware.use Rack::TwilioWebhookAuthentication, Rails.application.secrets.twilio_auth_token, '/voice'
+  #config.middleware.use Rack::TwilioWebhookAuthentication, Rails.application.secrets.twilio_auth_token, '/voice'
     
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  #config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+        config.action_mailer.default_url_options = { :host => 'exitticket.herokuapp.com' }
+    config.action_mailer.delivery_method = :smtp
+    ActionMailer::Base.smtp_settings = {
+        :address        => "smtp.sendgrid.net",
+        :port           => "587",
+        :authentication => :plain,
+        :user_name      => ENV['SENDGRID_USERNAME'],
+        :password       => ENV['SENDGRID_PASSWORD'],
+        :domain         => 'exitticket.herokuapp.com'
+    }
     
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true

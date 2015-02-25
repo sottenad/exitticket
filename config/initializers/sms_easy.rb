@@ -1,0 +1,1 @@
+SMSEasy::Client.config['from_address'] = "txt@myexitslip.com"
