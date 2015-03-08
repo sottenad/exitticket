@@ -1,0 +1,13 @@
+<div class="columns small-6">
+    <h3>Exit Slip</h3>
+    <p>Sent: <%= @response_set.send_time.strftime('%B %m, %Y at %l:%M %P') %></p>
+    <p>Question: <%= @response_set.question.prompt %></p>
+    <p>Period: <%= @response_set.period.title %></p>
+    
+</div>
+<div class="columns small-6">
+    <h3>Students</h3>
+    <% @response_set.period.students.each do |s| %>
+        <%= s.name %>
+    <% end %>
+</div>

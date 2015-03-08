@@ -12,7 +12,7 @@ Rails.application.configure do
   #config.middleware.use Rack::TwilioWebhookAuthentication, Rails.application.secrets.twilio_auth_token, '/voice'
     
   #config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-        config.action_mailer.default_url_options = { :host => 'exitticket.herokuapp.com' }
+    config.action_mailer.default_url_options = { :host => 'exitticket.herokuapp.com' }
     config.action_mailer.delivery_method = :smtp
     ActionMailer::Base.smtp_settings = {
         :address        => "smtp.sendgrid.net",

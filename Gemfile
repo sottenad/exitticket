@@ -50,7 +50,7 @@ gem 'rmagick', :require => 'RMagick'
 gem 'validates_formatting_of'
 
 #Phone/sms support
-gem 'sms-easy'
+gem 'nexmo'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

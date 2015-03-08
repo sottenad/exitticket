@@ -1,6 +1,6 @@
 class Student < ActiveRecord::Base
     
-    include SmsEasyUtils
+    include SmsUtils
     
     belongs_to :period
     has_one :teacher

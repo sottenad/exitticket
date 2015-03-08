@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150208035327) do
+ActiveRecord::Schema.define(version: 20150308201655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,16 +35,22 @@ ActiveRecord::Schema.define(version: 20150208035327) do
   end
 
   create_table "response_sets", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "question_id"
+    t.datetime "send_time"
+    t.string   "message_id"
+    t.integer  "period_id"
+    t.boolean  "sms_sent"
   end
 
   create_table "responses", force: :cascade do |t|
     t.text     "response_text"
     t.integer  "rating"
     t.integer  "student_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "response_set_id"
   end
 
   create_table "students", force: :cascade do |t|
