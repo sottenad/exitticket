@@ -16,8 +16,9 @@ class ResponseSetsController < ApplicationController
   def create
     @response_set = ResponseSet.new(response_sets_params)
     @response_set.send_time = Time.zone.now
+    @response_set.sms_sent = false
     if @response_set.save
-        render 'new' 
+        redirect_to response_set_path(@response_set)
     else
         redirect_to new_response_set_path(@response_set)
     end
@@ -25,6 +26,7 @@ class ResponseSetsController < ApplicationController
 
   def show
       @response_set = ResponseSet.find(params[:id])
+      @sms_sent_to = Response.where(response_set_id: params[:id])
   end
 
   def edit
@@ -32,6 +34,6 @@ class ResponseSetsController < ApplicationController
     
     private
     def response_sets_params
-        params.require(:response_set).permit(:period_id, :question_id, :send_time)    
+        params.require(:response_set).permit(:period_id, :question_id)    
     end
 end

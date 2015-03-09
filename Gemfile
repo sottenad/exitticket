@@ -37,6 +37,9 @@ gem 'simple_form'
 gem 'foundation-rails'
 gem 'font-awesome-rails'
 
+#manage cron jobs
+gem 'whenever'
+
 #manage keys and env values
 gem 'figaro'
 

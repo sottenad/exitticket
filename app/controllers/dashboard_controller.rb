@@ -3,7 +3,9 @@ class DashboardController < ApplicationController
     layout "app"
     
     def index
-        @teacher = current_teacher        
+        @teacher = current_teacher
+        periods = current_teacher.periods
+        @exitslips = ResponseSet.where(period_id: periods)
     end
     
 end

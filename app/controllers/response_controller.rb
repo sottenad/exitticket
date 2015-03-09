@@ -1,11 +1,14 @@
 class ResponseController < ApplicationController
     def inbound
-        resp = Response.new
-        student = Student.find_by_phone_number(
+        responses = Response.where(phone_number: params[:msisdn])
+        @resp = responses.first
+        @resp.response_text = params[:text]
+        if @resp.save
+            render :nothing => true, :status => 200, :content_type => 'text/html'
+        else
+            render :nothing => true, :status => 400, :content_type => 'text/html'
+        end
         
-        resp.response_text = params['text']
-        
-        resp.student_id = 
     end
     
 end

@@ -1,10 +1,23 @@
 <div class="row">
 
-<div class="columns small-12">
+<div class="columns small-8">
     <h2>Hello. I am a dashboard</h2>
     <div>
         <%= link_to "create exit slip", new_response_set_path %>
     </div>
 </div>
+    <div class="small-4 columns">
+        <h3>Recent Exit Slips</h3>
+        <ul>
+        <% @exitslips.each do |e| %>
+            <li>
+                <%= link_to e.period.title, response_set_path(e) %><br />
+                Sent: <%= time_ago_in_words(e.send_time) %> ago<br />
+                <%= e.question.prompt %><br />
+                <%= e.complete_responses.count %>/<%= e.responses.count %> Responded
+            </li>
+        <% end %>
+        </ul>
+    </div>
     
 </div>
