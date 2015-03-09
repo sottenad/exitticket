@@ -13,8 +13,9 @@
     <% @periods.each_with_index do |p,i| %>
     <div class="small-12 medium-6 large-4 columns <%if i==@periods.count-1 %>end<% end %> " data-equalizer-watch>
         <div class="panel">
-            <h5><%= p.title %></h5>
-            <p><small>Period <%= p.number.to_s %></small></p>
+            <h5>Period <%= p.number.to_s %>: <%= p.title %></h5>
+            <p><%= pluralize(p.response_sets.count, 'Response set') %> sent</p>
+            <p><small></small></p>
             <p><%= pluralize(p.students.count, 'Student') %></p>
             <ul class="button-group small even-3">
                 <li><%= link_to "View Class", period_path(p.id), :class => 'button small' %></li>

@@ -1,6 +1,6 @@
 class ResponseController < ApplicationController
     def inbound
-        responses = Response.where(phone_number: params[:msisdn])
+        responses = Response.where(phone_number: params[:msisdn]).where("response_text is null").order(created_at: :desc)
         @resp = responses.first
         @resp.response_text = params[:text]
         if @resp.save

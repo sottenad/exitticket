@@ -8,7 +8,7 @@ class ResponseSet < ActiveRecord::Base
     
     def complete_responses
         period = Period.find(self.period_id)
-        responses = Response.where(student_id: period.students).where.not(response_text: '')
+        responses = Response.where(student_id: period.students, response_set_id: self.id).where.not(response_text: '')
         return responses
     end
 end

@@ -14,14 +14,21 @@ class ResponseSetsController < ApplicationController
   end
     
   def create
-    @response_set = ResponseSet.new(response_sets_params)
-    @response_set.send_time = Time.zone.now
-    @response_set.sms_sent = false
-    if @response_set.save
-        redirect_to response_set_path(@response_set)
-    else
-        redirect_to new_response_set_path(@response_set)
+    periods = response_sets_params[:period_id]
+    periods.each do |p|
+        @response_set = ResponseSet.new()
+        @response_set.period_id = p
+        @response_set.question_id = response_sets_params[:question_id]
+        @response_set.send_time = Time.zone.now
+        @response_set.sms_sent = false
+        if !@response_set.save
+            #one of the response sets failed to save
+           redirect_to new_response_set_path(@response_set) 
+        end
     end
+    
+    redirect_to response_set_path(@response_set)
+    
   end
 
   def show
@@ -34,6 +41,6 @@ class ResponseSetsController < ApplicationController
     
     private
     def response_sets_params
-        params.require(:response_set).permit(:period_id, :question_id)    
+        params.require(:response_set).permit(:question_id, :period_id => [])    
     end
 end

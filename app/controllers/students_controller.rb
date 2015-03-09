@@ -11,8 +11,11 @@ class StudentsController < ApplicationController
   def create
       @student = Student.new(student_params) 
       @student.locked = false
-      @student.save!
-      redirect_to joined_path
+      if @student.save
+        redirect_to joined_path
+      else
+        redirect_to :back  
+      end
   end
     
     def destroy

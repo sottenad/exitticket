@@ -4,9 +4,10 @@ class Student < ActiveRecord::Base
     
     belongs_to :period
     has_one :teacher
-    
+    phony_normalize :phone_number, :default_country_code => 'US'
+    validates :phone_number, uniqueness: true
     validates :name, presence: true
-    validates_formatting_of :phone_number, :using => :us_phone
+    
     
     def toggle_lock
         self.toggle(:locked)

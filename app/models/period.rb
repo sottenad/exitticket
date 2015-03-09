@@ -11,6 +11,7 @@ class Period < ActiveRecord::Base
     end
     
     def show_title
-       return self.title 
+        val = "Period #{self.number}: #{self.title}"
+       return val
     end
 end

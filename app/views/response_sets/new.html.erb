@@ -2,15 +2,21 @@
     <div class="small-12 columns small-centered">
         
         <%= simple_form_for @response_set do |f| %>
-        <div class="form-inputs">
+        <div class="form-inputs row">
+            <h3>Select Periods</h3>
+            <%= f.collection_check_boxes :period_id, @periods, :id, :show_title, required: true %> 
+            <h3>Select Question</h3>
             <%= f.input :question_id, collection: @questions, label_method: :show_prompt, required: true %>
-            <%= f.input :period_id, collection: @periods, required: true %>
-            <small>Times not working yet. Stand by</small>
-            <%= f.input :send_time, as: :string, input_html:{class: "datetimepicker", disabled: true}, disabled: 'disabled' %>
+            
+            <!--<div class="medium-4 small-6 columns">
+                <%= f.input :send_time %>
+            </div>-->
+
         </div>
-        <div class="form-inputs">
+        <div class="form-inputs row">
             <%= f.button :submit,  'Send Now' %>
         </div>
         <% end %>
     </div>
 </div>
+    

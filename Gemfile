@@ -53,6 +53,7 @@ gem 'rmagick', :require => 'RMagick'
 gem 'validates_formatting_of'
 
 #Phone/sms support
+gem 'phony_rails'
 gem 'nexmo'
 
 # Use ActiveModel has_secure_password
