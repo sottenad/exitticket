@@ -1,18 +1,25 @@
-<div class="row">
-    <div class="columns small-12 small-centered medium-8">
+<div class="row small-collapse">
+    <div class="main columns small-12 small-centered medium-8 large-6">
         <h1>Join Period <%= @period.number %></h1>
         <h3><%= @period.title %></h3>
-        <%= simple_form_for @student, :validate => true do |f| %>
+        <%= simple_form_for @student, :url => join_path do |f| %>
             <div class="form-inputs">
-                <%= f.input :name, label: 'Your Name', placeholder: 'John Dough', :required => true %>
-                <%= f.input :phone_number, :as => :string, :required => true, label: 'Your Cell Phone Number', :input_html => { class: 'phonemask'}  %>
-                <em>We will confirm your phone number in the next step.</em>
+                <div class="row small-collapse">
+                    <%= f.input :name, label: 'Your Name', placeholder: 'John Dough', :required => true, :validate => true %>
+                    <%= f.input :phone_number, :as => :tel, :required => true, placeholder: '(555) 123-4579', :class => 'phonemask'  %>
+                </div>
                 <%= f.hidden_field :period_id, value: @period.id %>
                 <%= f.hidden_field :teacher_id, value: @period.teacher.id %>
-                <%= @period.id %> <%= @period.teacher.id %>
             </div>    
             <div class="form-inputs">
-                <%= f.button :submit, "Join Class" %>
+                <div class="row small-collapse">
+                <div class="columns small-4">
+                    <%= f.button :submit, "Join Class", :class => 'left' %>
+                </div>
+                <div class="columns small-8">
+                    <div class="hidden left" id="err_msg">Please fill out all fields.</div>
+                </div>
+                    </div>
             </div>
         <% end %>
     </div>

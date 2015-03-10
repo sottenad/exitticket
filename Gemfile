@@ -52,6 +52,8 @@ gem 'rmagick', :require => 'RMagick'
 #phone number validation
 gem 'validates_formatting_of'
 
+
+
 #Phone/sms support
 gem 'phony_rails'
 gem 'nexmo'

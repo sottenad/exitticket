@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'students/:id/send' => 'students#sendMessage', as: :send_student_sms
     
   get 'join/:id' => 'students#new', as: :join
+  post 'join/:id' => 'students#create'
+    
   get 'joined' => 'students#joined', as: :joined
   get 'response/inbound' => 'response#inbound'
   devise_for :teachers
@@ -20,6 +22,7 @@ Rails.application.routes.draw do
       root :to => 'dashboard#index', as: :authenticated_root
   end
   
+    
   root :to => 'home#index'
     
   # The priority is based upon order of creation: first created -> highest priority.

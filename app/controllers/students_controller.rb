@@ -14,7 +14,8 @@ class StudentsController < ApplicationController
       if @student.save
         redirect_to joined_path
       else
-        redirect_to :back  
+        @period = Period.find_by(shortcode: params[:id])
+        render :new
       end
   end
     
@@ -40,6 +41,8 @@ class StudentsController < ApplicationController
             render :json => student.to_json
         end
     end
+    
+    
     
     private 
     def student_params

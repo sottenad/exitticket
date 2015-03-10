@@ -15,6 +15,7 @@
 //= require foundation
 //= require turbolinks
 //= require foundation-datepicker
+//= require jquery.formatter.min
 //= require_tree .
 
 
