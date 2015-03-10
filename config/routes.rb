@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     
   get 'join/:id' => 'students#new', as: :join
   post 'join/:id' => 'students#create'
+  get 'joined/vcard' => 'students#download_vcard', as: :download_vcard
     
   get 'joined' => 'students#joined', as: :joined
   get 'response/inbound' => 'response#inbound'

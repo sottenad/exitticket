@@ -24,6 +24,10 @@ class StudentsController < ApplicationController
         @student.delete
         redirect_to :back
     end
+    
+    def joined
+       @link = ActionController::Base.helpers.asset_url('vcard.vcf') 
+    end
 
     def sendMessage
         @student = Student.find(params[:id])
@@ -42,6 +46,15 @@ class StudentsController < ApplicationController
         end
     end
     
+    def download_vcard
+      respond_to do |format|
+        format.vcf do
+            puts ActionController::Base.helpers.asset_url('vcard.vcf') 
+          tmp_file = open('http://localhost:3000/'+ActionController::Base.helpers.asset_url('vcard.vcf'))
+          send_data tmp_file.read, :filename => 'exitslip.vcf', :type => :vcf # Send the actual file with proper mime-type
+        end
+      end 
+    end
     
     
     private 

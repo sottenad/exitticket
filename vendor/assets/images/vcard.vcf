@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//Mac OS X 10.10.2//EN
+N:;MyExitSlip;;;
+FN:MyExitSlip
+ORG:MyExitSlip.com;
+TEL;type=CELL;type=VOICE;type=pref:2097299390
+URL;type=pref:http://MyExitSlip
+UID:6d05ae09-d122-429f-824a-196c8f8af0f8
+X-ABUID:6D05AE09-D122-429F-824A-196C8F8AF0F8:ABPerson
+END:VCARD
