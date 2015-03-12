@@ -1,23 +1,51 @@
 <div class="row">
-
-<div class="columns small-8">
-    <h2>Hello. I am a dashboard</h2>
-    <div>
-        <%= link_to "create exit slip", new_response_set_path %>
-    </div>
-</div>
-    <div class="small-4 columns">
-        <h3>Recent Exit Slips</h3>
-        <ul>
-        <% @exitslips.each do |e| %>
-            <li>
-                <%= link_to e.period.title, response_set_path(e) %><br />
-                Sent: <%= time_ago_in_words(e.send_time) %> ago<br />
-                <%= e.question.prompt %><br />
-                <%= e.complete_responses.count %>/<%= e.responses.count %> Responded
-            </li>
-        <% end %>
-        </ul>
-    </div>
+    <%= link_to "create exit slip", new_response_set_path, :class => 'button right' %>
+    <h3>Recent Exit Slips</h3>
     
 </div>
+<div class="row">
+    <ul class="small-block-grid-4">
+    <% @exitslips.each do |e| %>
+        <li>
+            <%= link_to e.period.title, response_set_path(e) %><br />
+            Sent: <%= time_ago_in_words(e.send_time) %> ago<br />
+            <%= e.question.prompt %><br />
+            <% if e.responses.count.to_f > 0 %>
+                <%= ((e.complete_responses.count.to_f / e.responses.count.to_f) *100).to_i %>%
+            <% else %>
+                0%
+            <% end %>
+            Responded
+            
+        </li>
+    <% end %>
+    </ul>  
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Sent</th>
+                <th>Title</th>
+                <th>Prompt</th>
+                <th>Progress</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @exitslips.each do |e| %>
+            <tr>
+                <td><%= time_ago_in_words(e.send_time) %> ago</td>
+                <td><%= link_to e.period.title, response_set_path(e) %></td>
+                <td><%= e.question.prompt %></td>
+                <td>
+                <% if e.responses.count.to_f > 0 %>
+                    <%= ((e.complete_responses.count.to_f / e.responses.count.to_f) *100).to_i %>%
+                <% else %>
+                    0%
+                <% end %>
+                </td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
+

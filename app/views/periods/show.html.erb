@@ -17,7 +17,6 @@
                     <th>Phone</th>
                     <th>Lock Out </th>
                     <th>Delete</th>
-                    <th>Send Messgage</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,14 +29,9 @@
                         <i class="fa lock <%= student.locked ? 'fa-lock' : 'fa-unlock' %>"></i>
                     </td>
                     <td class="studentDelete">
-                        <i class="fa fa-user-times"></i>
-                        <%= link_to 'Destroy', student_path(student.id), :method =>:delete, data: { confirm: 'Are you sure?' }, "data-type" => "json" %>
+                        <%= link_to 'Delete', student_path(student.id), :method =>:delete, data: { confirm: 'Are you sure?' }, "data-type" => "json" %>
                     </td>
-                    <td>
-                        <%= link_to send_student_sms_path(student.id) do %>
-                            <i class="fa fa-phone"></i>
-                        <% end %>
-                    </td>
+
                 </tr>
                 <% end %>
             </tbody>

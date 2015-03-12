@@ -4,7 +4,7 @@
         <%= simple_form_for @response_set do |f| %>
         <div class="form-inputs row">
             <h3>Select Periods</h3>
-            <%= f.collection_check_boxes :period_id, @periods, :id, :show_title, required: true %> 
+            <%= f.input :period_id, collection: @periods, label_method: :show_title,  required: true %> 
             <h3>Select Question</h3>
             <%= f.input :question_id, collection: @questions, label_method: :show_prompt, required: true %>
             

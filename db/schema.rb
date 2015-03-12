@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150310031747) do
+ActiveRecord::Schema.define(version: 20150312001759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20150310031747) do
     t.integer  "response_set_id"
     t.string   "sms_id"
     t.integer  "phone_number",    limit: 8
+    t.boolean  "sent"
   end
 
   create_table "students", force: :cascade do |t|
