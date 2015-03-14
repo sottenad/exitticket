@@ -7,6 +7,7 @@
     <title><%= content_for?(:title) ? ENV['SITE_NAME'] + " - " +yield(:title) : "foundation-rails" %></title>
 
     <%= stylesheet_link_tag    "application" %>
+    
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= javascript_include_tag "//code.jquery.com/jquery-1.11.2.min.js" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
@@ -14,8 +15,8 @@
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
-    <nav class="top-bar" data-topbar role="navigation">
+  <body class="<%= controller_name %>  <%= action_name %>" >
+    <nav class="top-bar" id="top-bar-dark" data-topbar role="navigation">
       <ul class="title-area">
         <li class="name">
           <h1><%= link_to ENV['SITE_NAME'], authenticated_root_path %></h1>

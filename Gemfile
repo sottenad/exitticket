@@ -36,6 +36,8 @@ gem 'raygun4ruby'
 gem 'simple_form'
 gem 'foundation-rails'
 gem 'font-awesome-rails'
+gem 'chart-js-rails'
+gem 'knockoutjs-rails'
 
 #manage cron jobs
 gem 'whenever'

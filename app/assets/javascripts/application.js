@@ -16,6 +16,9 @@
 //= require turbolinks
 //= require foundation-datepicker
 //= require jquery.formatter.min
+//= require starrr
+//= require Chart
+//= require knockout
 //= require_tree .
 
 

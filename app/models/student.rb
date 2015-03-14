@@ -3,7 +3,7 @@ class Student < ActiveRecord::Base
     include SmsUtils
     
     belongs_to :period
-    has_one :teacher
+    belongs_to :teacher
     
     
     phony_normalize :phone_number, :default_country_code => 'US'

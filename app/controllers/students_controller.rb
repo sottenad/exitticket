@@ -45,7 +45,7 @@ class StudentsController < ApplicationController
             render :json => student.to_json
         end
     end
-    
+        
     def download_vcard
       respond_to do |format|
         format.vcf do

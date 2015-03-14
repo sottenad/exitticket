@@ -1,0 +1,35 @@
+
+<div class="darker-row">
+    <div class="row">
+        <div class="columns small-12">
+        <h5>Period  <%= @response_set.period.number.to_s %>: <%= @response_set.period.title %> sent <%= @response_set.send_time.strftime('%B %d at %l:%M') %></h5>
+        </div>
+    </div>
+</div>
+<div class="dark-row">
+    <div class="row callout" data-exitslip-id="<%= @response_set.id %>">
+        <div class="columns small-3 border-right text-center">
+            <div><canvas id="responsePercent"></canvas> </div>
+            <!--<h4><span id="completed-responses" data-bind="text: formattedName"></span></h4>
+            <p id="total-students">out of <%= pluralize(@response_set.responses.count.to_s, 'student') %></p>-->
+        </div>
+        <div class="columns small-9">
+            
+            <h5><%= @response_set.question.prompt %></h5>
+            <!-- ko if:hasCompleteResponses -->
+            <ul data-bind="foreach: completeResponses">
+                <li>
+                    &ldquo;<span data-bind="text: response_text"></span>&rdquo;
+                    <span data-bind="text: student.name"></span>
+                </li>
+            </ul>
+            <!-- /ko -->
+            <!-- ko ifnot:hasCompleteResponses -->
+                <p>No one has responded yet.</p>
+            <!-- /ko -->
+            
+        </div>
+    </div>
+
+</div>
+

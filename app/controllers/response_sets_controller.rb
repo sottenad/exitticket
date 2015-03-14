@@ -14,7 +14,6 @@ class ResponseSetsController < ApplicationController
   end
     
   def create
-
         @response_set = ResponseSet.new()
         @response_set.period_id = response_sets_params[:period_id]
         @response_set.question_id = response_sets_params[:question_id]
@@ -28,15 +27,13 @@ class ResponseSetsController < ApplicationController
         else
             redirect_to new_response_set_path(@response_set) 
         end
-    
-    
-    
-    
+ 
   end
 
   def show
       @response_set = ResponseSet.find(params[:id])
-      @sms_sent_to = Response.where(response_set_id: params[:id])
+      @valid_responses = @response_set.responses.order('response_time DESC').where('response_time is not null')
+      @invalid_responses = @response_set.responses.where('response_time is null');
   end
 
   def edit

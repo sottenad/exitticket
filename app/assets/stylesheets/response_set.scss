@@ -2,7 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.fa-check-circle-o{
- color:#43AC6A   
+.fa-check-circle-o, .selected {
+ color:#43AC6A   ;
+     
+    -webkit-transition: color 200ms ease-out;
+    -moz-transition: color 200ms ease-out;
+    -o-transition: color 200ms ease-out;
+    transition: color 200ms ease-out     ;
 }
+
+.callout ul{
+    margin:0;
+    padding:0;
+}
+
+
+
 

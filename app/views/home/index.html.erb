@@ -1,11 +1,44 @@
+<div class="title-row ">
+    <div class="row">
+        <div class="contain-to-grid sticky">
+        <nav class="top-bar">
+            <ul class="title-area">
+                <li class="name">
+                    <h1><a href="/">My Exit Slip</a></h1>
+                </li>
+            </ul>
+            <section class="top-bar-section">
+            <ul class="right">
+            <% if teacher_signed_in? %>
+              <li><%= link_to('Logout', destroy_teacher_session_path, :method => :delete) %></li>
+            <% else %>
+              <li><%= link_to 'Teacher Login', new_teacher_session_path %></li>
+            <% end %>
+              <li><%= link_to 'Sign Up', new_teacher_registration_path, :class => 'button tiny success ' %></li>
+            </ul>
+            </section>
+        </nav>
+    </div>
+    </div>
+    <div class="row cta-row">
+        <div class="columns large-9 small-centered">
+            <h2>Connect with your students. Instantly.</h2>
+            <p>My Exit Slip enables teachers to instantly send and recieve feedback from entire class periods or preps over simple, ubiquitous SMS messages</p>
+            <%= link_to 'Create a Free Account', new_teacher_registration_path, :class => 'button success large radius' %>
+        </div>
+    </div>
+</div>
 
-<% if teacher_signed_in? %>
-  <p>
-  <%= link_to('Logout', destroy_teacher_session_path, :method => :delete) %>        
-  </p>
-<% else %>
-  <p>
-  <%= link_to('Login as teacher', new_teacher_session_path)  %>  
-  </p>
-<% end %>
+<div class="row">
+    <div class="columns small-6 text-center">
+        <h3>Gather student feedback. Instantly.</h3>
+        <%= image_tag 'sms-phones.png' %>
+        <p>Create exit slips and other simple surveys quickly and easily using our online interface. Then send them to your classroom using simple SMS messaging or email.</p>
+    </div>
+    <div class="columns small-6 text-center">
+        <h3>Monitor trends over time.</h3>
+        <%= image_tag 'graph.png' %>
+        <p>Easily identify which students are performing and which aren't. Keep track of all your exit slips in one spot, making end of year evaluation a breeze.</p>
+    </div>
+</div>
 

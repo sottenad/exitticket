@@ -1,27 +1,43 @@
-<div class="columns small-6">
-    <h3>Exit Slip</h3>
-    <p>Sent: <%= @response_set.send_time.strftime('%B %m, %Y at %l:%M %P') %></p>
-    <p>Question: <%= @response_set.question.prompt %></p>
-    <p>Period: <%= @response_set.period.title %></p>
-    
-</div>
-<div class="columns small-6">
-    <h3>Students</h3>
-    <p>Sent to <%= pluralize(@sms_sent_to.count, 'Student') %> </p>
-    <ul>
-    <% @sms_sent_to.each do |s| %>
-        <li>
-            <strong><%= s.student.name %></strong>
-            <% if s.response_text.nil? %>
-                <i class="fa fa-circle-o" title="has not responded"></i>
-            <% else %>
-                <i class="fa fa-check-circle-o" title="has responded"></i>
-                <br />
-                <span class="response"><%= s.response_text %></span>
+
+
+<%= render 'status' %>
+
+
+<div class="columns small-12 small-centered">
+   <h3>Responses</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Received</th>
+                <th>Student</th>
+                <th>Response</th>
+                <th>Rating</th>
+                <th>Responded At</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @response_set.responses.each do |s| %>
+            <tr>
+                <td>
+                    <% if s.response_text.nil? %>
+                        <i class="fa fa-circle-o" title="has not responded"></i>
+                    <% else %>
+                        <i class="fa fa-check-circle-o" title="has responded"></i>
+                    <% end %>
+                </td>
+                <td><%= s.student.name %></td>
+                <td><%= s.response_text %></td>
+                <td>
+                    <div class="starrr" data-id="<%= s.id %>" data-rating='<%= s.rating %>'></div>
+                </td>
+                
+                <td>
+                    <% if !s.response_time.nil? %>
+                    <%= time_ago_in_words(s.response_time) %> ago
+                    <% end %>
+                </td>
+            </tr>
             <% end %>
-            
-            
-        </li>
-    <% end %>
-    </ul>
+        </tbody>
+    </table>
 </div>

@@ -1,25 +1,14 @@
+
+<%= render 'status' %>
+
+                                         
 <div class="row">
     <%= link_to "create exit slip", new_response_set_path, :class => 'button right' %>
     <h3>Recent Exit Slips</h3>
     
 </div>
+                
 <div class="row">
-    <ul class="small-block-grid-4">
-    <% @exitslips.each do |e| %>
-        <li>
-            <%= link_to e.period.title, response_set_path(e) %><br />
-            Sent: <%= time_ago_in_words(e.send_time) %> ago<br />
-            <%= e.question.prompt %><br />
-            <% if e.responses.count.to_f > 0 %>
-                <%= ((e.complete_responses.count.to_f / e.responses.count.to_f) *100).to_i %>%
-            <% else %>
-                0%
-            <% end %>
-            Responded
-            
-        </li>
-    <% end %>
-    </ul>  
     
     <table>
         <thead>

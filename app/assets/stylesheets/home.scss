@@ -1,3 +1,43 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+
+.title-row{
+    background:#2f353e;
+    color:#fff;
+    min-height:300px;
+    text-align: center;
+    padding:10px 0 120px 0;
+    -webkit-box-shadow: 0 2px 0 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 0 0 rgba(0,0,0,0.2);
+    margin-bottom:30px;
+
+    h2,p{
+        text-shadow: 0 2px 2px #191c21;
+        -webkit-font-smoothing: antialiased;   
+    }
+    
+    h2{
+        font-weight:700;
+        color:#fff;  
+        margin: 100px 0 20px 0;
+    }
+    
+    p{
+        font-size:1.25rem;
+        letter-spacing: -0.7px;
+        margin-bottom:30px;
+    }
+    
+    .cta-row .button{
+     font-family:'Open Sans', sans-serif;   
+    }
+}
+
+.center-img img{
+    margin:15px auto;
+    display:block;
+}

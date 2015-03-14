@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
 
   #temporary for testing, delete later
-  get 'students/:id/send' => 'students#sendMessage', as: :send_student_sms
+  
     
   get 'join/:id' => 'students#new', as: :join
   post 'join/:id' => 'students#create'
   get 'joined/vcard' => 'students#download_vcard', as: :download_vcard
-    
   get 'joined' => 'students#joined', as: :joined
+    
+    
   get 'response/inbound' => 'response#inbound'
   devise_for :teachers
   get 'dashboard' => 'dashboard#index'
@@ -16,8 +17,9 @@ Rails.application.routes.draw do
   resources :response_sets, :path => 'exitslip'
   resources :periods, :path => 'classes'
   resources :students 
+  
   put 'students/:id/lock' => 'students#toggle_lock'
-    
+  get 'response/rating/:id/:rating' => 'response#set_rating'  
     
   authenticated :teacher do
       root :to => 'dashboard#index', as: :authenticated_root
