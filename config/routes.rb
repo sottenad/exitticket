@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get 'exitslip/:id/average' => 'response_sets#average'
   resources :response_sets, :path => 'exitslip'
     
-  get 'response/inbound' => 'response#inbound'
+  match 'response/inbound' => 'response#inbound', via: [:get, :post]
   get 'response/rating/:id/:rating' => 'response#set_rating'  
     
   authenticated :teacher do
