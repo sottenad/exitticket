@@ -35,6 +35,9 @@ var dashboard = function(){
                     exitslip.percentCompleteChart.segments[1].value = d.incomplete.length;
                     exitslip.percentCompleteChart.update();
                 }
+                if(exitslip.percentCompleteChart.segments[0].value == d.complete.length){
+                    clearInterval(interval);
+                }
             }
         });
     }
@@ -44,8 +47,8 @@ var dashboard = function(){
             vm.averageScore(d.average_score);
         });
     }
-    
     var interval = setInterval(updateResponses, 5000);
+    
     
     //Need to make and return the ViewModel for computables to work
     var vm = new viewModel();
