@@ -39,6 +39,12 @@ class ResponseSetsController < ApplicationController
   def edit
   end
     
+    def average
+        @response_set = ResponseSet.find(params[:id]);        
+        @avg = @response_set.average_response_score();
+        render json: @avg.to_json
+    end
+    
     private
     def response_sets_params
         params.require(:response_set).permit(:question_id, :period_id)    

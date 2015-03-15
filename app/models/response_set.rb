@@ -10,12 +10,17 @@ class ResponseSet < ActiveRecord::Base
     
     def complete_responses
         period = Period.find(self.period_id)
-        responses = Response.where(student_id: period.students, response_set_id: self.id).where.not(response_text: '')
+        responses = Response.where(student_id: period.students, response_set_id: self.id).where('response_text is not null')
         return responses
     end
     
     def send_sms
         send_response_set(self)    
+    end
+    
+    def average_response_score
+        avg = Response.where(response_set_id: self.id).where('response_text is not null').average(:rating)
+        return :id => self.id, :average_score => avg
     end
     
 end

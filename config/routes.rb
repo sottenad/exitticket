@@ -9,16 +9,20 @@ Rails.application.routes.draw do
   get 'joined' => 'students#joined', as: :joined
     
     
-  get 'response/inbound' => 'response#inbound'
+  
   devise_for :teachers
+    
   get 'dashboard' => 'dashboard#index'
   
   resources :questions
-  resources :response_sets, :path => 'exitslip'
   resources :periods, :path => 'classes'
   resources :students 
-  
   put 'students/:id/lock' => 'students#toggle_lock'
+  
+  get 'exitslip/:id/average' => 'response_sets#average'
+  resources :response_sets, :path => 'exitslip'
+    
+  get 'response/inbound' => 'response#inbound'
   get 'response/rating/:id/:rating' => 'response#set_rating'  
     
   authenticated :teacher do

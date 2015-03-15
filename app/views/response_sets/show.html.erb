@@ -2,42 +2,43 @@
 
 <%= render 'status' %>
 
+<div class="row">
+    <div class="columns small-12 small-centered">
+       <h3>Responses</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Received</th>
+                    <th>Student</th>
+                    <th>Response</th>
+                    <th>Rating</th>
 
-<div class="columns small-12 small-centered">
-   <h3>Responses</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Received</th>
-                <th>Student</th>
-                <th>Response</th>
-                <th>Rating</th>
-                <th>Responded At</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @response_set.responses.each do |s| %>
-            <tr>
-                <td>
-                    <% if s.response_text.nil? %>
-                        <i class="fa fa-circle-o" title="has not responded"></i>
-                    <% else %>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ko foreach: completeResponses -->
+                <tr>
+                    <td>
                         <i class="fa fa-check-circle-o" title="has responded"></i>
-                    <% end %>
-                </td>
-                <td><%= s.student.name %></td>
-                <td><%= s.response_text %></td>
-                <td>
-                    <div class="starrr" data-id="<%= s.id %>" data-rating='<%= s.rating %>'></div>
-                </td>
-                
-                <td>
-                    <% if !s.response_time.nil? %>
-                    <%= time_ago_in_words(s.response_time) %> ago
-                    <% end %>
-                </td>
-            </tr>
-            <% end %>
-        </tbody>
-    </table>
+                    </td>
+                    <td data-bind="text: student.name"></td>
+                    <td data-bind="text: response_text"></td>
+                    <td>
+                        <div class="starrr" data-bind="attr: {'data-id':id, 'data-rating':rating}"></div>
+                    </td>
+                </tr>
+                <!-- /ko -->
+                <!-- ko foreach: incompleteResponses -->
+                <tr>
+                    <td>
+                        <i class="fa fa-circle-o" title="has not responded"></i>
+                    </td>
+                    <td data-bind="text: student.name"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <!-- /ko -->
+            </tbody>
+        </table>
+    </div>
 </div>

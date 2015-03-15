@@ -8,6 +8,8 @@ var dashboard = function(){
     var viewModel = function(){
         var self = this;
         self.completeResponses = ko.observableArray([]);
+        self.incompleteResponses = ko.observableArray([]);
+        self.averageScore = ko.observable();
         self.formattedName = ko.computed(function() {
             return self.completeResponses().length == 1 ? '1 Response' : self.completeResponses().length + " Responses";
         }, self);
@@ -16,7 +18,7 @@ var dashboard = function(){
         }, self);
     };
     var first = true;
-    var update = function(){
+    var updateResponses = function(){
         $.ajax({
             url: '/exitslip/'+latestId+'.json',
             success: function(d){
@@ -24,30 +26,69 @@ var dashboard = function(){
                 if(first || exitslip.percentCompleteChart.segments[0].value != d.complete.length){
                     first = false;
                     vm.completeResponses(d.complete);
+                    vm.incompleteResponses(d.incomplete);
+                    $('.starrr').starrr();
+                    
+                    
+                    //Update Chart
                     exitslip.percentCompleteChart.segments[0].value = d.complete.length;
                     exitslip.percentCompleteChart.segments[1].value = d.incomplete.length;
                     exitslip.percentCompleteChart.update();
                 }
             }
-        })    
+        });
     }
     
-    var interval = setInterval(update, 5000);
+    var updateAverageScore = function(){
+        $.getJSON('/exitslip/'+latestId+'/average', function(d){
+            vm.averageScore(d.average_score);
+        });
+    }
+    
+    var interval = setInterval(updateResponses, 5000);
     
     //Need to make and return the ViewModel for computables to work
     var vm = new viewModel();
     ko.applyBindings(vm);
-    update();
+    
+    updateAverageScore();
+    updateResponses();
+    
     return {
-     vm: vm   
+        updateAverageScore: updateAverageScore   
     }
 };
 
-var ready = function(){
+
+function initStarrr(){
+    console.log('init');
+    $('body').on('click', '.starrr', function(){ $(this).addClass('selected') })
+    .on('starrr:change', function(e, value){
+        console.log('changed');
+        var respId = $(e.target).attr('data-id');
+        $.ajax({
+          url: '/response/rating/'+ respId + '/' +value,
+          success: function(){
+            //Do nothing  
+              exitslip.vm.updateAverageScore();
+          },
+          error: function(){
+            //TODO: log error.
+          }
+        })
+    });    
+}
+
+
+$(function(){
   //need to fire on doc ready for graphing stuff that needs the Dom.
   if( $('.dashboard.index, .response_sets.show').length > 0){
-    exitslip.vm = new dashboard() ;
-          var ctx = document.getElementById("responsePercent").getContext("2d");
+      
+    exitslip.vm = new dashboard();
+    
+    initStarrr();  
+      
+    var ctx = document.getElementById("responsePercent").getContext("2d");
     ctx.canvas.width = 200;
     ctx.canvas.height = 200;
     var colorVal = $('a').css('color');
@@ -55,6 +96,7 @@ var ready = function(){
         {value:0, color: '#008CBA'},
         {value:5, color: '#eeeeee'}
     ]
+    
     exitslip.percentCompleteChart = new Chart(ctx).Doughnut(data,{
         'percentageInnerCutout':80,
         animationSteps: 15,
@@ -77,7 +119,7 @@ var ready = function(){
                 if(complete == 1){ 
                     string += ' Response';
                 }else{
-                    string += 'Responses';     
+                    string += ' Responses';     
                 }
             }
             var totalStudents = exitslip.percentCompleteChart.segments[1].value + exitslip.percentCompleteChart.segments[0].value;
@@ -99,11 +141,7 @@ var ready = function(){
         }
     });  
   }
-}
+});
 
 
-
-//Hack for turbolinks
-$(document).ready(ready);
-$(document).on('page:load', ready);
 
