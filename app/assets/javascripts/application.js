@@ -24,3 +24,7 @@
 
 
 $(function(){ $(document).foundation(); });
+
+//Hack for turbolinks
+$(document).ready(rs_ready);
+$(document).on('page:load', rs_ready);

@@ -5,6 +5,10 @@
 
 $light-gray: #f9f9fa;
 
+.show.response_sets nav.top_bar{
+    margin-bottom:0;
+}
+
 .darker-row, .dark-row{
      -webkit-box-shadow: 0 1px 0 0 rgba(0,0,0,0.1);
     box-shadow: 0 1px 0 0 rgba(0,0,0,0.1);   
@@ -49,7 +53,23 @@ $light-gray: #f9f9fa;
     canvas{
         font-family: $font-family-sans-serif;   
     }
-    
+ }
 
-    
+i.warn{
+    color: #eee27d;   
+}
+
+.well{
+    background: $light-gray;
+    padding:20px;
+    border-radius:5px;
+    border:1px solid darken($light-gray, 5%);
+    margin:20px 0;
+}
+.strike{
+    text-decoration:line-through;   
+}
+
+.dashboard table{
+    width:100%;   
 }

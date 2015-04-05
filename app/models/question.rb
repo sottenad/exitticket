@@ -4,6 +4,8 @@ class Question < ActiveRecord::Base
     validates :prompt, length: {maximum: 300}
     
     has_many :response_set
+    belongs_to :teacher
+    
     
     def show_prompt
         return self.prompt    

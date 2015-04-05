@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'faq' => 'faq#index'
+
   #temporary for testing, delete later
   
     
@@ -16,6 +18,8 @@ Rails.application.routes.draw do
   
   resources :questions
   resources :periods, :path => 'classes'
+  get "/get_students/:period_id" => 'periods#get_students', as: 'get_students'
+    
   resources :students 
   put 'students/:id/lock' => 'students#toggle_lock'
   

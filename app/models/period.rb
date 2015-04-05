@@ -14,4 +14,11 @@ class Period < ActiveRecord::Base
         val = "Period #{self.number}: #{self.title}"
        return val
     end
+    
+    def show_title_and_count
+        studentsString = ActionController::Base.helpers.pluralize(self.students.count, 'Student')
+        val = "Period #{self.number}: #{self.title} - #{studentsString}"
+       return val
+    end
+    
 end

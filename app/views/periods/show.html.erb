@@ -1,45 +1,71 @@
+<% content_for :title do %>
+    Class Details
+<% end %>
 <div class="row">
-    <div class="columns small-8">
-        <%= @period.title %>
-    </div>
-    <div class="columns small-4 text-right">
-        <span class="label round">Period <%= @period.number.to_s %></span>
-    </div>
+    <h2><%= @period.title %></h2>
 </div>
-<div class="row">
+
+<div class="row collapse">
     <div class="small-12 columns">
         <% if @period.students.count > 0 %>
         <table class="adminStudents">
             <thead>
                 <tr>
                     <th>Student</th>
-                    <th>Email</th>
                     <th>Phone</th>
-                    <th>Lock Out </th>
+                    <th>
+                        Average Score 
+                        <i class="fa fa-question-circle right" 
+                            data-tooltip aria-haspopup="true" 
+                            title="The students average score based on your ratings.">
+                        </i>
+                    </th>
+                    <th>
+                        Lock Out 
+                        <i class="fa fa-question-circle right" 
+                            data-tooltip aria-haspopup="true" 
+                            title="Exit slips are not sent to locked out students">
+                        </i>
+                    </th>
+                    <th>Edit</th>
                     <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
-                <% @period.students.each do |student| %>
-                <tr data-student-id="<%= student.id %>">
-                    <td><%= student.name %></td>    
-                    <td><%= student.email %></td>
-                    <td><%= student.phone_number %></td>
-                    <td class="studentLock">
-                        <i class="fa lock <%= student.locked ? 'fa-lock' : 'fa-unlock' %>"></i>
-                    </td>
-                    <td class="studentDelete">
-                        <%= link_to 'Delete', student_path(student.id), :method =>:delete, data: { confirm: 'Are you sure?' }, "data-type" => "json" %>
-                    </td>
-
-                </tr>
+                <% @period.students.each do |curr_student| %>
+                    <%= render partial: 'listrow', locals: {student: curr_student} %> 
                 <% end %>
             </tbody>
         </table>
         <% else %>
             <h5>No Students</h5>
             <p>No students have joined this class yet. You can invite them to join by going to <kbd><%= link_to sprintf("%s/join/%s", ENV['SITE_NAME'], @period.shortcode).html_safe, join_path(@period.shortcode) %></kbd> </p>
-        
+
         <% end %>
+    </div>
+</div>
+
+<div class="row">
+    <div class="well clearfix">
+        <div class="columns small-12">
+        <h5>No Cell Phone?</h5>
+        <p>As a teacher, you can add students without phone numbers using the form below </p>
+        </div>
+        <%= simple_form_for @student, remote: true, format: :json, :url => students_path do |f| %>
+            <div class="form-inputs">
+                <div class="columns small-5">
+                    <%= f.input :name, label: 'Student Name', placeholder: 'John Dough', :required => true%>
+                </div>
+                <div class="columns small-5">
+                    <%= f.input :phone_number, :as => :tel, placeholder: '(555) 123-4579', :class => 'phonemask'  %>
+                </div>
+                <div class="columns small-2">
+                        <%= f.button :submit, "Add Student", :class => 'left small'  %>
+                </div>
+                <%= f.hidden_field :period_id, value: @period.id %>
+                <%= f.hidden_field :teacher_id, value: @period.teacher.id %>
+            </div>
+        <% end %>
+        
     </div>
 </div>

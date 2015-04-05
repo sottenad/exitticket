@@ -27,7 +27,10 @@ var dashboard = function(){
                     first = false;
                     vm.completeResponses(d.complete);
                     vm.incompleteResponses(d.incomplete);
-                    $('.starrr').starrr();
+                    $('.starrr').starrr({
+                        numStars: 4,
+                        tooltips: ['Nope', 'Kind of', 'Almost', 'Got it!']
+                    });
                     
                     
                     //Update Chart
@@ -35,7 +38,7 @@ var dashboard = function(){
                     exitslip.percentCompleteChart.segments[1].value = d.incomplete.length;
                     exitslip.percentCompleteChart.update();
                 }
-                if(exitslip.percentCompleteChart.segments[0].value == d.complete.length){
+                if(d.incomplete.length == 0){
                     clearInterval(interval);
                 }
             }
@@ -64,7 +67,7 @@ var dashboard = function(){
 
 
 function initStarrr(){
-    console.log('init');
+    
     $('body').on('click', '.starrr', function(){ $(this).addClass('selected') })
     .on('starrr:change', function(e, value){
         console.log('changed');

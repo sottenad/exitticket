@@ -12,7 +12,9 @@ class PeriodsController < ApplicationController
     end
     
     def show
+        @student = Student.new
         @period = Period.find(params[:id])
+        @students = @period.students
     end
     
     def edit 
@@ -36,6 +38,13 @@ class PeriodsController < ApplicationController
         redirect_to periods_path
     end
     
+    
+    def get_students
+        @students = Students.where(:period_id => params[:period_id])
+        respond_to do |format|
+            format.js
+        end
+    end
 
     
     private

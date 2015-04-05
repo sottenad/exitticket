@@ -4,15 +4,18 @@ class Student < ActiveRecord::Base
     
     belongs_to :period
     belongs_to :teacher
+    has_many :responses
     
     
     phony_normalize :phone_number, :default_country_code => 'US'
-    validates :phone_number, :phony_plausible => true
-    validates :phone_number, uniqueness: true
-    validates :phone_number, length: {minimum: 9}
+    validates :phone_number, uniqueness: true, :phony_plausible => true, :allow_blank => true, :allow_nil => true
     validates :name, :presence => true
     
     before_validation :stripphonenumber
+    
+    def average_score
+        return self.responses.average(:rating)
+    end
     
     def toggle_lock
         self.toggle(:locked)
@@ -22,12 +25,20 @@ class Student < ActiveRecord::Base
     
     def send_student_message(message)
         num = self.phone_number
-        if Student.send_sms(num, message)
-            return true
+        if !self.locked 
+            if Student.send_sms(num, message)
+                return true
+            end
         end
     end
     
+    def formatted_number
+        Phony.format( self.phone_number, :format => :international) 
+    end
+    
     def stripphonenumber
-        self.phone_number.gsub(/\D/,'')
+        if !self.phone_number.nil?
+            self.phone_number.gsub(/\D/,'')
+        end
     end
 end

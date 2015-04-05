@@ -1,23 +1,42 @@
 class StudentsController < ApplicationController
     
-    layout "marketing"
+    before_action :authenticate_teacher!, :only => [:edit, :update]
+    layout :which_layout
     
     
-  def new
-      @period = Period.find_by(shortcode: params[:id])
+    def new
+      @period = Period.where("lower(shortcode) = ?", params[:id].downcase).first
       @student = Student.new
-  end
+    end
     
-  def create
-      @student = Student.new(student_params) 
-      @student.locked = false
-      if @student.save
-        redirect_to joined_path
-      else
-        @period = Period.find_by(shortcode: params[:id])
-        render :new
-      end
-  end
+    def create
+        @student = Student.new(student_params) 
+        @student.locked = false
+        respond_to do |format|
+          if @student.save
+            format.js 
+            format.json { render json: @student }
+            format.html { redirect_to joined_path }
+          else
+            @period = Period.find_by(shortcode: params[:id])
+            format.json { render json: @student.errors.full_messages, status: :unprocessable_entity }
+            format.html {render :new}
+          end
+        end
+    end
+    
+    def edit
+        @student = Student.find(params[:id])
+    end
+    
+    def update
+        @student = Student.find(params[:id])
+        if @student.update_attributes(student_params)
+            redirect_to period_path(@student.period_id)    
+        else
+            render 'edit'    
+        end        
+    end
     
     def destroy
         @student = Student.find(params[:id])
@@ -56,10 +75,20 @@ class StudentsController < ApplicationController
       end 
     end
     
+
     
     private 
     def student_params
         params.require(:student).permit(:phone_number, :email, :period_id, :teacher_id, :name)
+    end
+    
+    def which_layout
+        if params[:action] == 'edit'
+            return 'app'
+        else
+            return 'marketing'
+        end
+        
     end
     
 end

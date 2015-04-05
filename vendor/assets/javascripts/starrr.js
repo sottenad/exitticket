@@ -7,7 +7,8 @@ var __slice = [].slice;
     Starrr = (function() {
         Starrr.prototype.defaults = {
             rating: void 0,
-            numStars: 5,
+            numStars: 4,
+            tooltips: [],
             change: function(e, value) {}
         };
 
@@ -43,8 +44,14 @@ var __slice = [].slice;
 
             _results = [];
             for (_i = 1, _ref = this.options.numStars; 1 <= _ref ? _i <= _ref : _i >= _ref; 1 <= _ref ? _i++ : _i--) {
-                _results.push(this.$el.append("<i class='fa fa-star-o'></i>"));
+                if(this.options.tooltips && this.options.tooltips[_i - 1]){
+                    _results.push(this.$el.append("<i class='fa fa-star-o' data-tooltip aria-haspopup='true' title='" + this.options.tooltips[_i-1] +"'></i>"));
+                }else{
+                    _results.push(this.$el.append("<i class='fa fa-star-o'></i>"));   
+                }
+                
             }
+            $(document).foundation('tooltip', 'reflow');
             return _results;
         };
 

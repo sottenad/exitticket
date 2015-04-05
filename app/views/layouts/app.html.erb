@@ -28,7 +28,10 @@
           <section class="top-bar-section">
             <!-- Right Nav Section -->
             <ul class="right">
-
+                <li class="active"><%= link_to "New Exit Slip", new_response_set_path %></li>
+              <li>
+                <%= link_to "FAQ", faq_path %>  
+              </li>
               <li class="has-dropdown">
                 <a href="#">
                     <% if current_teacher.avatar? %>
@@ -48,7 +51,15 @@
 
             <!-- Left Nav Section -->
             <ul class="left">
-              <li><%= link_to 'Classes', periods_path %></li>
+              <li>
+                  <% if current_teacher.periods.count == 0 %>
+                    <%= link_to new_period_path do %>
+                        Classes <i class="fa fa-exclamation-circle warn"></i>
+                    <% end %>
+                  <% else %>
+                    <%= link_to 'Classes', periods_path %>
+                  <% end %>
+              </li>
               <li><%= link_to 'Questions', questions_path %></li>
             </ul>
           </section>

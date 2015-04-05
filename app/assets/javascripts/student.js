@@ -1,5 +1,5 @@
 $(function(){
-    $('#student_phone_number').formatter({
+    $('input.phonemask').formatter({
       'pattern': '({{999}}) {{999}}-{{9999}}',
       'persistent': false
     });
@@ -7,7 +7,7 @@ $(function(){
     var shaker;
     var invalidCount = 0;
     
-    $('input[type="submit"]').on('click', function(e){
+    $('.join-class input[type="submit"]').on('click', function(e){
         var strippedNum = $('#student_phone_number').val().replace(/\D/g, '');
         if($('#student_name').val().length == 0 || strippedNum.length < 10){
             $(e.currentTarget).blur();

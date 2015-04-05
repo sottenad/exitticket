@@ -1,8 +1,10 @@
 
+<% if !@response_set.nil? %>
 <div class="darker-row">
     <div class="row">
         <div class="columns small-12">
-        <h5>Period  <%= @response_set.period.number.to_s %>: <%= @response_set.period.title %> sent <%= @response_set.send_time.strftime('%B %d at %l:%M') %></h5>
+        <div class="right"><strong><span class="label round info"><%= @response_set.send_time.strftime('%B %d at %l:%M') %></span></strong></div>
+        <h5><%= link_to @response_set.period.title, period_path(@response_set.period_id) %></h5>
         </div>
     </div>
 </div>
@@ -33,6 +35,12 @@
             
         </div>
     </div>
-
+    
+    <% if params[:controller] == 'dashboard' %>
+    <div class="row text-right">
+        <%= link_to 'View Exit Slip Details', response_set_path(@response_set.id) %>    
+    </div>
+    <% end %>
 </div>
+<% end %>
 

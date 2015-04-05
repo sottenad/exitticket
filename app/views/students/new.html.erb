@@ -1,18 +1,15 @@
-<div class="row small-collapse">
-    <div class="main columns small-12 small-centered medium-8 large-6">
-        <h1>Join Period <%= @period.number %></h1>
-        <h3><%= @period.title %></h3>
+<div class="row">
+    <div class="main columns small-12 small-centered medium-8 large-6 join-class">
+        <h1>Join Class <br /><small><%= @period.title %></small></h1>
         <%= simple_form_for @student, :url => join_path do |f| %>
             <div class="form-inputs">
-                <div class="row small-collapse">
                     <%= f.input :name, label: 'Your Name', placeholder: 'John Dough', :required => true, :validate => true %>
                     <%= f.input :phone_number, :as => :tel, :required => true, placeholder: '(555) 123-4579', :class => 'phonemask'  %>
-                </div>
                 <%= f.hidden_field :period_id, value: @period.id %>
                 <%= f.hidden_field :teacher_id, value: @period.teacher.id %>
             </div>    
             <div class="form-inputs">
-                <div class="row small-collapse">
+                <div class="row">
                 <div class="columns small-4">
                     <%= f.button :submit, "Join Class", :class => 'left' %>
                 </div>

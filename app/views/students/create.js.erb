@@ -1,0 +1,4 @@
+/*Clear out the form and add the student to the table*/
+/* This is ran every time someone creates a student via ajax. */
+$(".adminStudents tbody").append("<%= escape_javascript(render partial: "periods/listrow", locals: {student: @student}) %>");
+$('#student_name, #student_phone_number').val('');

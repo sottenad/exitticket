@@ -1,11 +1,10 @@
 <div class="row">
-    <div class="small-12 columns small-centered">
-        
+    <div class="small-8 columns small-centered">
+        <h2>Send an Exit Slip</h2>
+        <p>Please select which class you want to send an exit slip to, and which question to send. After clicking "send now", a text message will be sent to all students in the selected class immediately.</p>
         <%= simple_form_for @response_set do |f| %>
-        <div class="form-inputs row">
-            <h3>Select Periods</h3>
-            <%= f.input :period_id, collection: @periods, label_method: :show_title,  required: true %> 
-            <h3>Select Question</h3>
+        <div class="form-inputs">
+            <%= f.input :period_id, collection: @periods, label: 'Class', label_method: :show_title_and_count,  required: true %> 
             <%= f.input :question_id, collection: @questions, label_method: :show_prompt, required: true %>
             
             <!--<div class="medium-4 small-6 columns">
@@ -13,7 +12,7 @@
             </div>-->
 
         </div>
-        <div class="form-inputs row">
+        <div class="form-inputs">
             <%= f.button :submit,  'Send Now' %>
         </div>
         <% end %>

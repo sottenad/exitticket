@@ -11,6 +11,7 @@ class Teacher < ActiveRecord::Base
     
     has_many :periods
     has_many :students
+    has_many :questions
     
     
     #returns a suitable display name (first_name or email)

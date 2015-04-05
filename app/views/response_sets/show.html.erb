@@ -2,6 +2,7 @@
 
 <%= render 'status' %>
 
+<% if !@response_set.nil? %>
 <div class="row">
     <div class="columns small-12 small-centered">
        <h3>Responses</h3>
@@ -11,7 +12,13 @@
                     <th>Received</th>
                     <th>Student</th>
                     <th>Response</th>
-                    <th>Rating</th>
+                    <th>
+                        Rating 
+                        <i class="fa fa-question-circle right tip-top" 
+                            data-tooltip aria-haspopup="true" 
+                            title="Rate your student's response. More details can be found in the FAQ">
+                        </i>
+                    </th>
 
                 </tr>
             </thead>
@@ -24,7 +31,7 @@
                     <td data-bind="text: student.name"></td>
                     <td data-bind="text: response_text"></td>
                     <td>
-                        <div class="starrr" data-bind="attr: {'data-id':id, 'data-rating':rating}"></div>
+                        <div class="starrr" data-options="hover_delay: 0" data-bind="attr: {'data-id':id, 'data-rating':rating}"></div>
                     </td>
                 </tr>
                 <!-- /ko -->
@@ -42,3 +49,6 @@
         </table>
     </div>
 </div>
+<% end %>
+
+

@@ -18,6 +18,9 @@ var toggleLock = function(e){
     
 }
 
+
+
+
 var updateLockUI = function(e,locked){
     if(locked){
         $(e.currentTarget).addClass('fa-lock').removeClass('fa-unlock');

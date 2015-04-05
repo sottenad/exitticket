@@ -13,7 +13,7 @@ class QuestionsController < ApplicationController
     def destroy
         question = Question.find(params[:id])
         question.destroy
-        redirect_to_questions_path 
+        redirect_to questions_path 
     end
     
     def create

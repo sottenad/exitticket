@@ -1,0 +1,12 @@
+<tr data-student-id="<%= student.id %>">
+    <td><%= student.name %></td>    
+    <td><%= student.formatted_number %></td>
+    <td class="text-center"><%= student.average_score %></td>
+    <td class="studentLock">
+        <i class="fa lock <%= student.locked ? 'fa-lock' : 'fa-unlock' %>"></i>
+    </td>
+    <td class="text-center"><%= link_to 'Edit', edit_student_path(student.id) %></td>
+    <td class="studentDelete">
+        <%= link_to 'Delete', student_path(student.id), :method =>:delete, data: { confirm: 'Are you sure? Deleting a student will permanently remove all their data!' }, "data-type" => "json" %>
+    </td>
+</tr>
