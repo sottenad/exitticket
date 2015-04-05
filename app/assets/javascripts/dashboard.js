@@ -88,7 +88,7 @@ function initStarrr(){
 
 $(function(){
   //need to fire on doc ready for graphing stuff that needs the Dom.
-  if( $('.dashboard.index, .response_sets.show').length > 0){
+  if( $('.response_sets.show').length > 0){
       
     exitslip.vm = new dashboard();
     

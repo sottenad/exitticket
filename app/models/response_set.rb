@@ -1,6 +1,9 @@
 class ResponseSet < ActiveRecord::Base
     include SmsUtils
     
+    extend TimeSplitter::Accessors
+    split_accessor :send_time
+    
     has_many :responses
     belongs_to :question
     belongs_to :period

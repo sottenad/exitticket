@@ -39,6 +39,7 @@ gem 'foundation-rails'
 gem 'font-awesome-rails'
 gem 'chart-js-rails'
 gem 'knockoutjs-rails'
+gem 'momentjs-rails'
 
 #manage cron jobs
 gem 'whenever'
@@ -55,7 +56,8 @@ gem 'rmagick', :require => 'RMagick'
 #phone number validation
 gem 'validates_formatting_of'
 
-
+#Date Time support
+gem 'time_splitter'
 
 #Phone/sms support
 gem 'phony_rails'

@@ -20,6 +20,10 @@
 //= require starrr
 //= require Chart
 //= require knockout
+//= require pikaday
+//= require jstz.min
+//= require moment
+//= require utils
 //= require_tree .
 
 

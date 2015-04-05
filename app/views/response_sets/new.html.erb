@@ -3,18 +3,34 @@
         <h2>Send an Exit Slip</h2>
         <p>Please select which class you want to send an exit slip to, and which question to send. After clicking "send now", a text message will be sent to all students in the selected class immediately.</p>
         <%= simple_form_for @response_set do |f| %>
-        <div class="form-inputs">
-            <%= f.input :period_id, collection: @periods, label: 'Class', label_method: :show_title_and_count,  required: true %> 
-            <%= f.input :question_id, collection: @questions, label_method: :show_prompt, required: true %>
-            
-            <!--<div class="medium-4 small-6 columns">
-                <%= f.input :send_time %>
-            </div>-->
-
-        </div>
-        <div class="form-inputs">
-            <%= f.button :submit,  'Send Now' %>
-        </div>
+            <div class="form-inputs">
+                <div class="row">
+                    <div class="columns small-12">
+                        <%= f.input :period_id, collection: @periods, label: 'Class', label_method: :show_title_and_count,  required: true %> 
+                        <%= f.input :question_id, collection: @questions, label_method: :show_prompt, required: true %>
+                    </div>
+                </div>
+                <div class="row">
+                    <hr />
+                    <div class="columns small-12">
+                        <input type="checkbox" id="send_now" />
+                        <label for="send_now">Send Immediately?</label>
+                    </div>
+                </div>
+                <div class="row" id="send_time">
+                    <div class="columns small-6">
+                        <%= f.input :send_time_date, label: 'Date', as: :string, input_html: { class: 'datepicker' } %>
+                    </div>
+                    <div class="columns small-6">
+                        <%= f.input :send_time_time, label: 'Time', as: :string, input_html: { class: 'timepicker', placeholder: '1:05 pm' } %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="columns small-12">
+                        <%= f.button :submit, 'Schedule Exit Slip', class: 'submit-new-slip' %>
+                    </div>    
+                </div>
+            </div>
         <% end %>
     </div>
 </div>

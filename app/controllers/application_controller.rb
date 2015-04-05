@@ -4,13 +4,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
     
     #adds additoinal fields to devise.
-
-    before_action :configure_permitted_parameters, if: :devise_controller?
-    protected
-    def configure_permitted_parameters
+    #before_action :configure_permitted_parameters, if: :devise_controller?
+    #protected
+    #def configure_permitted_parameters
         #devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:current_password, :username, :email, :first_name, :last_name, :avatar) }
         #devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:current_password, :username, :email, :first_name, :last_name, :avatar) }
-        devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:current_password, :username, :email, :first_name, :last_name, :avatar) }
-    end
+    #    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:current_password, :username, :email, :first_name, :last_name, :avatar, :time_zone) }
+    #end
 
 end

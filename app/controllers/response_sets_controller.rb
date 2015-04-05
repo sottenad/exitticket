@@ -17,16 +17,24 @@ class ResponseSetsController < ApplicationController
         @response_set = ResponseSet.new()
         @response_set.period_id = response_sets_params[:period_id]
         @response_set.question_id = response_sets_params[:question_id]
-        @response_set.send_time = Time.zone.now
+        
+        d = Date.strptime(response_sets_params[:send_time_date], "%a %b %d %Y")
+        t = DateTime.strptime(response_sets_params[:send_time_time], "%I:%M %p")
+        dt = DateTime.new(d.year, d.month, d.day, t.hour, t.min, 0, t.zone)
+        puts dt
+        
+        #@response_set.send_time = Time.zone.now
         @response_set.sms_sent = false
-        if @response_set.save 
+        #if @response_set.save 
+            #Send it immediately 
             if @response_set.send_time <= Time.zone.now
-                @response_set.send_sms
+                #@response_set.send_sms
             end
             redirect_to response_set_path(@response_set)
-        else
-            redirect_to new_response_set_path(@response_set) 
-        end
+        #else
+            
+            #redirect_to new_response_set_path(@response_set) 
+        #end
  
   end
 
@@ -47,7 +55,7 @@ class ResponseSetsController < ApplicationController
     
     private
     def response_sets_params
-        params.require(:response_set).permit(:question_id, :period_id)    
+        params.require(:response_set).permit(:question_id, :period_id, :send_time_date, :send_time_time)    
     end
 end
 
