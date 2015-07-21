@@ -1,18 +1,15 @@
 <%= form_for @period do |f| %>
     
     <div class="form-inputs">
-        <%= f.label :color %>
-        <% @colors.each do |c| %>
-            <%= f.radio_button :color_id, c.id, :class => "css-checkbox" %>
-            <label for="period_color_id_<%= c.id %>" class="css-label" style="background: <%= c.hex %>"></label>
-
-        <% end %>
+        
         
         
         <%= f.label :title %>
         <%= f.text_field :title, label: 'Class Title' %>
         <%= f.label :number %>
-        <%= f.text_field :number, label: 'Period Number', collection: 0..8 %>
+        <%= f.select :number, options_for_select((1..8).to_a.collect { |v| v.to_i }) %>
+    
+        
     </div>
     <div class="form-inputs">
         <%= f.submit @period.new_record? ? "Create" : "Update", class:"button" %>
