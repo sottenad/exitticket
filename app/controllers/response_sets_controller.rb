@@ -7,8 +7,8 @@ class ResponseSetsController < ApplicationController
 
   def new
       @response_set = ResponseSet.new
-      @questions = Question.all
-      @periods = Period.all
+      @questions = Question.where("teacher_id = ?", current_teacher.id)
+      @periods = Period.where("teacher_id = ?", current_teacher.id)
   end
     
   def create
