@@ -20,7 +20,7 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
   def sign_up_params
-    params.require(:teacher).permit(:current_password, :username, :email, :first_name, :last_name, :avatar, :time_zone) 
+    params.require(:teacher).permit(:password, :password_confirmation, :email) 
   end
 
   def account_update_params

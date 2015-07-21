@@ -1,9 +1,20 @@
-<%= simple_form_for @period do |f| %>
+<%= form_for @period do |f| %>
+    
     <div class="form-inputs">
-        <%= f.input :title, label: 'Class Title' %>
-        <%= f.input :number, label: 'Period Number', collection: 0..8 %>
+        <%= f.label :color %>
+        <% @colors.each do |c| %>
+            <%= f.radio_button :color_id, c.id, :class => "css-checkbox" %>
+            <label for="period_color_id_<%= c.id %>" class="css-label" style="background: <%= c.hex %>"></label>
+
+        <% end %>
+        
+        
+        <%= f.label :title %>
+        <%= f.text_field :title, label: 'Class Title' %>
+        <%= f.label :number %>
+        <%= f.text_field :number, label: 'Period Number', collection: 0..8 %>
     </div>
     <div class="form-inputs">
-        <%= f.button :submit, @period.new_record? ? "Create" : "Update" %>
+        <%= f.submit @period.new_record? ? "Create" : "Update", class:"button" %>
     </div>
 <% end %>

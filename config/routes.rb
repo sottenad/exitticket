@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     
   get 'dashboard' => 'dashboard#index'
   
+  resources :colors
   resources :questions
   resources :periods, :path => 'classes'
   get "/get_students/:period_id" => 'periods#get_students', as: 'get_students'
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
   resources :students 
   put 'students/:id/lock' => 'students#toggle_lock'
   
+    
   get 'exitslip/:id/average' => 'response_sets#average'
   resources :response_sets, :path => 'exitslip'
     

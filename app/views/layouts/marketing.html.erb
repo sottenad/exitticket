@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? ENV['SITE_NAME'] + " - " +yield(:title) : "foundation-rails" %></title>
+    <title><%= content_for?(:title) ? ENV['SITE_NAME'] + " - " +yield(:title) : "Exit Slip" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -13,8 +13,16 @@
   </head>
 
   <body class="marketing">
-
-    <%= yield %>
-
+      <div class="wrap">
+          <%= yield %>
+          <div class="push"></div>
+      </div>
+      <footer class="clearfix">
+        <div class="row">
+            <div class="columns small-4">
+                &copy; 2015
+            </div>  
+        </div>
+      </footer>
   </body>
 </html>

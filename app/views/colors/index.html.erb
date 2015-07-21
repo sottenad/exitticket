@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="columns small-9">
+        <h2>Colors</h2>
+        <% @colors.each do |c| %>
+            <%= link_to edit_color_path(c) do %>
+                <span style="background: <%= c.hex %>"><%= c.name %></span><br />
+            <% end %>
+        <% end %>
+    </div>
+    <div class="columns small-3 text-right">
+        <%= link_to 'New Color', new_color_path, class: 'button' %>
+    </div>
+</div>

@@ -6,7 +6,7 @@ class ResponseController < ApplicationController
         if responses.count > 0
             @resp = responses.first
             @resp.response_text = params[:text]
-            @resp.response_time = Time.now
+            @resp.response_time = Time.current
             @resp.save
         end
         render :nothing => true, :status => 200, :content_type => 'text/html'

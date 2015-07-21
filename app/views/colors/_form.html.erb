@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="columns small-8 small-centered">
+    <%= simple_form_for @color do |f| %>
+        <%= f.input :name %>
+        <%= f.input :hex, as: :minicolors, input_html: {data: {
+          minicolors: {theme: :bootstrap, position: :right}}} %>
+        <%= f.button :submit, @color.new_record? ? 'Create' : 'Update' %>
+    <% end %>
+    <% if !@color.new_record? %>
+        <%= link_to 'Delete', color_path(@color), :method => 'delete' %>
+    <% end %>
+    </div>
+    
+</div>

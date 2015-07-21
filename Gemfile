@@ -40,6 +40,7 @@ gem 'font-awesome-rails'
 gem 'chart-js-rails'
 gem 'knockoutjs-rails'
 gem 'momentjs-rails'
+gem 'jquery-minicolors-rails'
 
 #manage cron jobs
 gem 'whenever'

@@ -8,6 +8,7 @@ class PeriodsController < ApplicationController
     end
     
     def new
+       @colors = Color.all
        @period = Period.new 
     end
     
@@ -18,6 +19,7 @@ class PeriodsController < ApplicationController
     end
     
     def edit 
+        @colors = Color.all
         @period = Period.find(params[:id])    
     end
     
@@ -49,7 +51,7 @@ class PeriodsController < ApplicationController
     
     private
     def period_params
-        params.require(:period).permit(:title, :number)    
+        params.require(:period).permit(:title, :number, :color_id)    
     end
 
 end

@@ -1,6 +1,7 @@
 class Period < ActiveRecord::Base
     has_many :students
     has_many :response_sets
+    belongs_to :color
     belongs_to :teacher
     
     validates :title, presence: true
@@ -20,5 +21,6 @@ class Period < ActiveRecord::Base
         val = "Period #{self.number}: #{self.title} - #{studentsString}"
        return val
     end
+    
     
 end
