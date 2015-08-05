@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   def set_user_time_zone
       
     if !current_teacher.nil? && current_teacher.time_zone.nil?
-        Time.zone = current_user.time_zone
+        Time.zone = current_teacher.time_zone
     else
         Time.zone = cookies[:jstz_time_zone] 
     end
