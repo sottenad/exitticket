@@ -31,8 +31,7 @@ gem 'devise'
 #heroku assets
 gem 'rails_12factor', group: :production
 
-#raygun - error logging
-gem 'raygun4ruby'
+
 
 gem 'simple_form'
 gem 'foundation-rails'
