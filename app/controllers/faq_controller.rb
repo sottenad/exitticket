@@ -1,5 +1,5 @@
 class FaqController < ApplicationController
-    layout "app"
+    layout "application"
   def index
   end
 end

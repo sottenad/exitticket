@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
     before_action :authenticate_teacher!
-    layout 'app'
+    layout 'application'
     
     def index
       @questions = Question.where(teacher_id: current_teacher.id)

@@ -2,63 +2,87 @@
     Exit Slips
 <% end %>
 <%#= render 'status' %>
-
-<% if !@response_set.nil? %>                                  
-    <div class="row">
-        <%= link_to "create exit slip", new_response_set_path, :class => 'button right' %>
-        <h3>Recent Exit Slips</h3>
-    </div>
-    <div class="row">
-        <table>
-            <thead>
-                <tr>
-                    <th>Sent</th>
-                    <th>Class</th>
-                    <th>Prompt</th>
-                    <th>Progress</th>
-                    <th>Details</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% @exitslips.each do |e| %>
-                <tr>
-                    <td><%= time_ago_in_words(e.send_time) %> ago</td>
-                    <td><%= link_to e.period.title, response_set_path(e) %></td>
-                    <td><%= e.question.prompt %></td>
-                    <td>
-                    <% if e.responses.count.to_f > 0 %>
-                        <%= ((e.complete_responses.count.to_f / e.responses.count.to_f) *100).to_i %>%
-                    <% else %>
-                        0%
-                    <% end %>
-                    </td>
-                    <td><%= link_to 'View Details', response_set_path(e.id) %></td>
-                </tr>
-                <% end %>
-            </tbody>
-        </table>
-    </div>
+<div class="container">
+<% if @firstrun %>  
+    <%= render 'firstrun' %> 
 <% else %>
-    <div class="row">
-        <div class="columns large-8 small-12 small-centered first-run well">
-            <h2>Welcome</h2>
-            <p>Welcome to myexitslip. Lets get started:</p>
-            <ol>
-                <li><%= link_to "Create a period", new_period_path, class: "#{'strike' if current_teacher.periods.count > 0}" %></li>
-                <li>
-                    Have your students join your new <%= 'class'.pluralize(current_teacher.periods.count) %> using the <%= 'link'.pluralize(current_teacher.periods.count) %> provided
-                    <ul>
-                        <% @current_teacher.periods.each do |p| %>
-                        <li>
-                            <%= p.title %>: <kbd><%= link_to sprintf("%s/join/%s", ENV['SITE_NAME'], p.shortcode).html_safe, join_path(p.shortcode) %></kbd>
-                        </li>
-                        <% end %>
-
-                    </ul>
-                </li>
-                <li><%= link_to "Create a question", new_question_path, class: "#{'strike' if current_teacher.questions.count > 0}" %></li>
-                <li><%= link_to "Send an exit slip", new_response_set_path %></li>
-            </ol>
+    <div class="row wrapper wrapper-content">
+        <div class="col-sm-9">
+            <h2>Welcome <%= current_teacher.display_name %></h2>
+            <div class="well">
+                <h2><%= link_to 'View Sent Exit Slips', response_sets_path, :class => 'btn btn-lg btn-primary btn-dim' %></h2>
+                
+                <p><%= current_teacher.last_sign_in_at  %></p>
+                <p>
+                    <% @new_responses.each do |r| %>
+                        <%= r.id %> | 
+                        <%= r.created_at %>
+                    <% end %>
+                </p>
+            </div>
+            
+        </div>
+        <div class="col-sm-3 dashboard-sidebar">
+            <div class="col-sm-12">
+                <h3>My Stats</h3>
+            </div>
+            <div class="col-sm-12">
+                    <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-success pull-right">Sent</span>
+                        <h5>Exit Slips</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins"><%= @exitslips_count %></h1>
+                        <small>Exit Slips Sent</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                    <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-info pull-right">Percent</span>
+                        <h5>Responses</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins"><%= @completion_percentage %>%</h1>
+                        <small>Response Rate Percent</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                    <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-primary pull-right">Replied</span>
+                        <h5>Responses</h5>
+                    </div>
+                    <div class="ibox-content clearfix">
+                        <h1 class="no-margins"><%= @complete_response_count %></h1>
+                        <small>SMS Responses Received</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label  pull-right">incomplete</span>
+                        <h5>Responses</h5>
+                    </div>
+                    <div class="ibox-content clearfix">
+                        <h1 class="no-margins"><%= @total_response_count %></h1>
+                        <small>SMS Responses Incomplete</small>
+                    </div>
+                </div>
+            </div>
+            
+                
+                        
+        </div>
+        
+        <%= link_to "create exit slip", new_response_set_path, :class => 'button right' %>
+        
+            
         </div>
     </div>
 <% end %>
+</div><!--container-->

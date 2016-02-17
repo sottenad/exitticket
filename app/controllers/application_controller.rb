@@ -13,8 +13,6 @@ class ApplicationController < ActionController::Base
     #    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:current_password, :username, :email, :first_name, :last_name, :avatar, :time_zone) }
     #end
 
-  
-
   def set_user_time_zone
       
     if !current_teacher.nil? && current_teacher.time_zone.nil?

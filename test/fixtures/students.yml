@@ -1,13 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  first_name: MyString
-  last_name: MyString
-  phone_number: 1
-  period_id: 1
+student1:
+  name: 'Steve student'
+  phone_number: 2537979309
+  teacher: teacher1
+  period: period1
 
-two:
-  first_name: MyString
-  last_name: MyString
-  phone_number: 1
-  period_id: 1
+student2:
+  name: 'Autumn Student'
+  phone_number: 2069305169
+  teacher: teacher1
+  period: period1
+  

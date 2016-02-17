@@ -84,7 +84,7 @@ class StudentsController < ApplicationController
     
     def which_layout
         if params[:action] == 'edit'
-            return 'app'
+            return 'application'
         else
             return 'marketing'
         end

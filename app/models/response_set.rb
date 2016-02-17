@@ -17,6 +17,12 @@ class ResponseSet < ActiveRecord::Base
         return responses
     end
     
+    def incomplete_responses
+        period = Period.find(self.period_id)
+        responses = Response.where(student_id: period.students, response_set_id: self.id).where('response_text is null')
+        return responses
+    end
+    
     def send_sms
         send_response_set(self)    
     end

@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-sm-10 first-run wrapper wrapper-content">
+        <h2>Welcome</h2>
+        <p>Welcome to myexitslip. Lets get started:</p>
+        <ol>
+            <li><%= link_to "Create a period", new_period_path, class: "#{'strike' if current_teacher.periods.count > 0}" %></li>
+            <li>
+                Have your students join your new <%= 'class'.pluralize(current_teacher.periods.count) %> using the <%= 'link'.pluralize(current_teacher.periods.count) %> provided
+                <ul>
+                    <% @current_teacher.periods.each do |p| %>
+                    <li>
+                        <%= p.title %>: <kbd><%= link_to sprintf("%s/join/%s", ENV['SITE_NAME'], p.shortcode).html_safe, join_path(p.shortcode) %></kbd>
+                    </li>
+                    <% end %>
+
+                </ul>
+            </li>
+            <li><%= link_to "Create a question", new_question_path, class: "#{'strike' if current_teacher.questions.count > 0}" %></li>
+            <li><%= link_to "Send an exit slip", new_response_set_path %></li>
+        </ol>
+    </div>
+</div>

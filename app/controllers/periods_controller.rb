@@ -1,6 +1,6 @@
 class PeriodsController < ApplicationController
     before_action :authenticate_teacher!
-    layout "app"
+    layout "application"
     
     def index
        @teacher = current_teacher

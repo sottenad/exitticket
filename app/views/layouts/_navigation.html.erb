@@ -1,0 +1,54 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                 <div class="dropdown profile-element"> 
+                    <span>
+                        <% if current_teacher.avatar? %>
+                            <%= image_tag current_teacher.avatar_url(:thumb).to_s, :class => "img-circle" %>  
+                        <% end %>
+                    </span>
+                    <%= link_to edit_teacher_registration_path  do %>
+                        <span class="block m-t-xs"> 
+                            <strong class="font-bold"><%= current_teacher.email %></strong>
+                        </span> 
+                    <% end %>
+                </div>
+            </li>
+    
+            <li class="<%= 'active' if controller?('dashboard') %>">
+                <%= link_to root_path do %>
+                    <i class="fa fa-home"></i> <span class="nav-label">Home</span>
+                <% end %>
+            </li>
+            <li class="<%= 'active' if controller?('periods') %>">
+                  <% if current_teacher.periods.count == 0 %>
+                    <%= link_to new_period_path do %>
+                        <i class="fa fa-laptop"></i> <span class="nav-label">Classes <i class="fa fa-exclamation-circle warn"></i></span>
+                    <% end %>
+                  <% else %>
+                    <%= link_to periods_path do %>
+                        <i class="fa fa-list"></i> <span class="nav-label">Classes</span>
+                    <% end %>
+                  <% end %>
+            </li>
+            <li class="<%= 'active' if controller?('questions') %>">
+                <%= link_to questions_path do %>
+                    <i class="fa fa-question"></i> <span class="nav-label">Questions</span>
+                <% end %>
+            </li>
+            <li class="<%= 'active' if controller?('devise') %>">
+                <%= link_to edit_teacher_registration_path do %>
+                    <i class="fa fa-gear"></i> <span class="nav-label">Account</span>
+                <% end %>
+            </li>
+            
+            <li class="sep">
+                <%= link_to destroy_teacher_session_path, :method => :delete do %>
+                    <i class="fa fa-sign-out"></i> Log out
+                <% end %>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

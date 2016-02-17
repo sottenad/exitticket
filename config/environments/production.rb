@@ -12,8 +12,6 @@ Rails.application.configure do
         :domain         => 'myexitslip.com'
     }
     
-  #config.middleware.use Rack::TwilioWebhookAuthentication, Rails.application.secrets.twilio_auth_token, '/voice'
-    
   # Code is not reloaded between requests.
   config.cache_classes = true
 

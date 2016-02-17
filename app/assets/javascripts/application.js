@@ -15,9 +15,7 @@
 //= require jquery_ujs
 //= require jquery.minicolors
 //= require jquery.minicolors.simple_form
-//= require foundation
 //= require turbolinks
-//= require foundation-datepicker
 //= require jquery.formatter.min
 //= require starrr
 //= require Chart
@@ -26,10 +24,11 @@
 //= require jstz.min
 //= require moment
 //= require utils
+//= require bootstrap-sprockets
 //= require_tree .
 
 
-$(function(){ $(document).foundation(); });
+
 
 //Hack for turbolinks
 $(document).ready(rs_ready);

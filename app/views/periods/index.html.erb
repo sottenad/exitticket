@@ -3,14 +3,15 @@
 <% end %>
 
 <div class="row">
-    <div class="columns small-12">
+    <div class="col-sm-12 wrapper wrapper-content">
         <p><%= link_to "Create New Class", new_period_path, :class => "button" %></p>
     </div>
 </div>
 <div class="row" data-equalizer>
+    <div class="col-sm-12">
     <% @periods.each_with_index do |p,i| %>
-    <div class="small-12 medium-6 large-4 columns <%if i==@periods.count-1 %>end<% end %> " data-equalizer-watch>
-        <div class="panel">
+    <div class="col-sm-4" data-equalizer-watch>
+        <div class="ibox-content">
             <h4><%= p.title %></h4>
             <% if p.students.count < 1 %>
                 <p>Please direct your students to visit the following link to join this class.</p>
@@ -25,8 +26,10 @@
                 </ul>
             <% end %>
         </div>
+    
     </div>
 
     <% end %>
+    </div>
 </div>
     

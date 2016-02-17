@@ -11,12 +11,26 @@
  * file per style scope.
  *
  
- *= require_self
- *= require foundation_and_overrides
- *= require font-awesome
- *= require jquery.minicolors 
- *= require foundation-datepicker
- *= require pikaday
- *= require_tree .
+
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "style";
+
+@import "dashboard";
+
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,300);
+
+
+.dropdown .dropdown-toggle img{
+    height:20px;
+    width:20px;
+}
+
+#side-menu .sep{
+    margin-top:15px;
+    padding-top:15px;
+    border-top: 1px solid darken($nav-bg, 10%) ;   
+}
+
