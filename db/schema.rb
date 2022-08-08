@@ -1,99 +1,96 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150516202403) do
-
+ActiveRecord::Schema[7.0].define(version: 2015_05_16_202403) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "colors", force: :cascade do |t|
+  create_table "colors", id: :serial, force: :cascade do |t|
     t.string "hex"
     t.string "name"
   end
 
-  create_table "periods", force: :cascade do |t|
-    t.string   "shortcode"
-    t.integer  "teacher_id"
-    t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "number"
-    t.integer  "color_id"
+  create_table "periods", id: :serial, force: :cascade do |t|
+    t.string "shortcode"
+    t.integer "teacher_id"
+    t.string "title"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.integer "number"
+    t.integer "color_id"
   end
 
-  create_table "questions", force: :cascade do |t|
-    t.text     "prompt"
-    t.integer  "rating_total"
-    t.integer  "rating_count"
-    t.integer  "teacher_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+  create_table "questions", id: :serial, force: :cascade do |t|
+    t.text "prompt"
+    t.integer "rating_total"
+    t.integer "rating_count"
+    t.integer "teacher_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
-  create_table "response_sets", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "question_id"
-    t.datetime "send_time"
-    t.string   "message_id"
-    t.integer  "period_id"
-    t.boolean  "sms_sent"
+  create_table "response_sets", id: :serial, force: :cascade do |t|
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.integer "question_id"
+    t.datetime "send_time", precision: nil
+    t.integer "period_id"
+    t.string "message_id"
+    t.boolean "sms_sent"
   end
 
-  create_table "responses", force: :cascade do |t|
-    t.text     "response_text"
-    t.integer  "rating"
-    t.integer  "student_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "response_set_id"
-    t.string   "sms_id"
-    t.integer  "phone_number",    limit: 8
-    t.boolean  "sent"
-    t.datetime "response_time"
+  create_table "responses", id: :serial, force: :cascade do |t|
+    t.text "response_text"
+    t.integer "rating"
+    t.integer "student_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.integer "response_set_id"
+    t.string "sms_id"
+    t.bigint "phone_number"
+    t.boolean "sent"
+    t.datetime "response_time", precision: nil
   end
 
-  create_table "students", force: :cascade do |t|
-    t.string   "name"
-    t.string   "phone_number"
-    t.integer  "period_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.integer  "teacher_id"
-    t.string   "email"
-    t.boolean  "locked"
+  create_table "students", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.string "phone_number"
+    t.integer "period_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.integer "teacher_id"
+    t.string "email"
+    t.boolean "locked"
   end
 
-  create_table "teachers", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "avatar"
-    t.string   "time_zone"
+  create_table "teachers", id: :serial, force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at", precision: nil
+    t.datetime "last_sign_in_at", precision: nil
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.string "first_name"
+    t.string "last_name"
+    t.string "avatar"
+    t.string "time_zone"
+    t.index ["email"], name: "index_teachers_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true
   end
-
-  add_index "teachers", ["email"], name: "index_teachers_on_email", unique: true, using: :btree
-  add_index "teachers", ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true, using: :btree
 
 end

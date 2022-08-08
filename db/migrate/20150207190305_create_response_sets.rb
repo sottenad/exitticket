@@ -1,4 +1,4 @@
-class CreateResponseSets < ActiveRecord::Migration
+class CreateResponseSets < ActiveRecord::Migration[4.2]
   def change
     create_table :response_sets do |t|
 

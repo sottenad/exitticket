@@ -10,26 +10,9 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery.turbolinks
-//= require jquery_ujs
-//= require jquery.minicolors
-//= require jquery.minicolors.simple_form
-//= require turbolinks
-//= require jquery.formatter.min
-//= require starrr
-//= require Chart
-//= require knockout
-//= require pikaday
-//= require jstz.min
-//= require moment
+
+
+
 //= require utils
-//= require bootstrap-sprockets
 //= require_tree .
 
-
-
-
-//Hack for turbolinks
-$(document).ready(rs_ready);
-$(document).on('page:load', rs_ready);
