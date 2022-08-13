@@ -102,7 +102,6 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    json (2.6.2)
     jwt (2.4.1)
     loofah (2.18.0)
       crass (~> 1.0.2)
@@ -223,9 +222,8 @@ GEM
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2022.1)
       tzinfo (>= 1.0.0)
-    uglifier (2.7.2)
-      execjs (>= 0.3.0)
-      json (>= 1.8.0)
+    uglifier (4.2.0)
+      execjs (>= 0.3.0, < 3)
     warden (1.2.9)
       rack (>= 2.0.9)
     websocket-driver (0.7.5)
@@ -253,7 +251,7 @@ DEPENDENCIES
   simple_form (= 5.0)
   time_splitter
   tzinfo-data
-  uglifier (= 2.7.2)
+  uglifier (= 4.2.0)
   whenever
 
 RUBY VERSION

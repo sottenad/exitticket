@@ -13,7 +13,7 @@ gem 'pg', '1.4.2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '6.0'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '2.7.2'
+gem 'uglifier', '4.2.0'
 # Use CoffeeScript for .coffee assets and views
 #gem 'coffee-rails'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
