@@ -9,7 +9,7 @@ module SmsUtils
     module ClassMethods
         def send_sms(recipient_num, message)
             nexmo = Nexmo::Client.new(key: ENV['NEXMO_API_KEY'], secret: ENV['NEXMO_API_SECRET'])
-            if(nexmo.send_message(from: ENV['NEXMO_NUMBER'], to: '12537979309', text: 'testing from module'))
+            if(nexmo.send_message(from: ENV['NEXMO_NUMBER'], to: '12014840047', text: 'testing from module'))
                 return true 
             else
                 return false
