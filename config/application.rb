@@ -21,7 +21,9 @@ module Exitticket
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    
+    #https://stackoverflow.com/questions/39221152/rails-5-heroku-deploy-error-execjsprogramerror-syntaxerror-unexpected-token
+    #preventing heroku precompilation issue
+    config.assets.js_compressor = Uglifier.new(harmony: true)
       
     #read from our local config:
     #http://railsapps.github.io/rails-environment-variables.html
