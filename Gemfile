@@ -53,7 +53,7 @@ gem 'whenever'
 
 #image upload
 gem 'carrierwave', '2.2.2'
-#gem 'fog', '2.0'
+gem 'fog-aws'
 #image resizing
 #gem 'rmagick', :require => 'RMagick'
 
